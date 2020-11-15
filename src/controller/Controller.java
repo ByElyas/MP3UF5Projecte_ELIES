@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JTable;
+import javax.swing.table.TableColumnModel;
 import model.Model;
 import view.View;
 
@@ -23,8 +24,9 @@ public class Controller {
     private static View view;
     
     public Controller(Model m, View v){
-        model=m;
-        view=v;
+        this.view = v;
+        this.model = m;
+        v.setVisible(true);
         controlador();
     }
     
@@ -33,9 +35,8 @@ public class Controller {
         //Codi que inicilitza la vista
         view.setVisible(true);
         
-        
-        //Codi que assigna els listeners als components de la vista
-        String column[] = {"Marca Vehicle", "Model Vehicle", "Any Vehicle", "Unitats venudes"};
+
+        String nomColumnes[] = {"Marca Vehicle", "Model Vehicle", "Any Vehicle", "Unitats venudes"};
         
         String data[][]= {
             {"a", "b", "c", "1"},
@@ -44,12 +45,82 @@ public class Controller {
             {null, null, null, null}
         };
         
-        model.setColumn(column);
-        model.setData(data);
+        JTable jtaula = new JTable(data, nomColumnes);
+        //CAIXES DE TEXT - FORMULARI
+        view.getjFieldText1().setText("                  ");
+        view.getjFieldText2().setText("                  ");
+        view.getjFieldText3().setText("                  ");
+        view.getjFieldText4().setText("                  ");
         
-        JTable jtaula=new JTable(data,column);
         
-        model.setJt(jtaula);
+        //LABELS - FORMULARI
+        view.getjLabel1().setText("Marca Vehicle");
+        view.getjLabel2().setText("Model Vehicle");
+        view.getjLabel3().setText("Any Vehicle");
+        view.getjLabel4().setText("Unitat venudes");
+        
+        //BOTÓ SUBMIT - FORMULARI
+        view.getjButton1().setText("Afegir registre");
+        
+        //TAULA
+        
+//        view.getJTaula().setTableHeader(nomColumnes);
+//        view.getJTaula().set
+        
+        
+        
+        
+        
+  
+        
+        
+        
+        
+        
+        
+        //Codi que assigna els listeners als components de la vista
+
+        //Coses
+
+//        String column[] = {"Marca Vehicle", "Model Vehicle", "Any Vehicle", "Unitats venudes"};
+//        
+//        String data[][]= {
+//            {"a", "b", "c", "1"},
+//            {null, null, null, null},
+//            {null, null, null, null},
+//            {null, null, null, null}
+//        };
+//        
+//        
+//        model.setColumn(column);
+//        model.getColumn();
+//        model.setData(data);
+//        model.getData();
+//        
+//        JTable jtaula=new JTable(data,column);
+//        
+//        model.setJt(jtaula);
+//        
+//        view.getJTaula().addColumn(column);
+//        view.getJTaula().add(data);
+//        
+//        jtaula = new javax.swing.JTable();
+//
+//        jtaula.setModel(new javax.swing.table.DefaultTableModel(
+//        new Object [][] {
+//            {null, null, null, null},
+//            {null, null, null, null},
+//            {null, null, null, null},
+//            {null, null, null, null}
+//        },
+//        new String [] {
+//            "Title 1", "Title 2", "Title 3", "Title 4"
+//        }
+//    ));
+
+
+
+
         
         
     }
