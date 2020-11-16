@@ -5,12 +5,14 @@
  */
 package model;
 
+import controller.Constants;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author profe
  */
-public class Model {
+public class Model extends DefaultTableModel {
     
     private String marcaVehicle;
     private String modelVehicle;
@@ -75,4 +77,9 @@ public class Model {
     public int getUnitatsVenudes() {
         return unitatsVenudes;
     }
+    
+    public Model() {
+		super(Constants.DATA, Constants.TABLE_HEADER);
+    }
+    
 }

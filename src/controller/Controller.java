@@ -13,12 +13,13 @@ import javax.swing.JTable;
 import javax.swing.table.TableColumnModel;
 import model.Model;
 import view.View;
+import utilscontroller.Utils;
 
 /**
  *
  * @author profe
  */
-public class Controller {
+public class Controller implements ActionListener {
     
     private static Model model;
     private static View view;
@@ -35,22 +36,19 @@ public class Controller {
         //Codi que inicilitza la vista
         view.setVisible(true);
         
-
-        String nomColumnes[] = {"Marca Vehicle", "Model Vehicle", "Any Vehicle", "Unitats venudes"};
+        //FILTRE
         
-        String data[][]= {
-            {"a", "b", "c", "1"},
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null}
-        };
+        view.getjLabel5().setText("Filtrar per marca:");
+        view.getjFieldText5().setText("Exemple               ");
+        view.getjButton2().setText("Filtrar!");
         
-        JTable jtaula = new JTable(data, nomColumnes);
         //CAIXES DE TEXT - FORMULARI
-        view.getjFieldText1().setText("                  ");
-        view.getjFieldText2().setText("                  ");
-        view.getjFieldText3().setText("                  ");
-        view.getjFieldText4().setText("                  ");
+//        view.getjFieldText1().setSize(0, 0);
+        view.getjFieldText1().setText("0                  ");
+        view.getjFieldText2().setText("0                  ");
+        view.getjFieldText3().setText("0                  ");
+        view.getjFieldText4().setText("0                  ");
+        
         
         
         //LABELS - FORMULARI
@@ -65,8 +63,9 @@ public class Controller {
         //TAULA
         
 //        view.getJTaula().setTableHeader(nomColumnes);
-//        view.getJTaula().set
-        
+
+//        Utils.loadTable(nomColumnes, data, jtaula);
+//        view.getJTaula();
         
         
         
@@ -123,6 +122,11 @@ public class Controller {
 
         
         
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 
