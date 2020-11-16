@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JTable;
 import javax.swing.table.TableColumnModel;
-import model.Model;
+import model.Vehicle;
 import view.View;
 import utilscontroller.Utils;
 
@@ -21,14 +21,15 @@ import utilscontroller.Utils;
  */
 public class Controller implements ActionListener {
     
-    private static Model model;
+    private static Vehicle model;
     private static View view;
     
-    public Controller(Model m, View v){
+    public Controller(Vehicle m, View v){
         this.view = v;
         this.model = m;
         v.setVisible(true);
         controlador();
+        
     }
     
     private void controlador(){
@@ -68,7 +69,8 @@ public class Controller implements ActionListener {
 //        view.getJTaula();
         
         
-        
+        Vehicle model = new Vehicle();
+	view.getJTaula().setModel(model);
         
   
         
@@ -81,7 +83,7 @@ public class Controller implements ActionListener {
 
         //Coses
 
-//        String column[] = {"Marca Vehicle", "Model Vehicle", "Any Vehicle", "Unitats venudes"};
+//        String column[] = {"Marca Vehicle", "Vehicle Vehicle", "Any Vehicle", "Unitats venudes"};
 //        
 //        String data[][]= {
 //            {"a", "b", "c", "1"},

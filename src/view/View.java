@@ -17,7 +17,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import model.Model;
+import model.Vehicle;
 
 
 /**
@@ -32,8 +32,7 @@ public class View extends javax.swing.JFrame {
     public View() {
         initComponents();
         //Fer que se mostre la taula en valors per defecte
-        Model model = new Model();
-	jtaula.setModel(model);
+        
     }
 
     /**
