@@ -31,7 +31,6 @@ public class View extends javax.swing.JFrame {
      */
     public View() {
         initComponents();
-        //Fer que se mostre la taula en valors per defecte
         
     }
 
@@ -52,12 +51,12 @@ public class View extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        afegirMarcaLabel = new javax.swing.JLabel();
+        afegirModelLabel = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        afegirAnyLabel = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        afegirUnitatsLabel = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
@@ -128,17 +127,17 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("jLabel1");
+        afegirMarcaLabel.setText("jLabel1");
 
-        jLabel2.setText("jLabel2");
+        afegirModelLabel.setText("jLabel2");
 
         jTextField2.setText("jTextField2");
 
-        jLabel3.setText("jLabel3");
+        afegirAnyLabel.setText("jLabel3");
 
         jTextField3.setText("jTextField3");
 
-        jLabel4.setText("jLabel4");
+        afegirUnitatsLabel.setText("jLabel4");
 
         jTextField4.setText("jTextField4");
 
@@ -151,18 +150,18 @@ public class View extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                    .addComponent(afegirModelLabel)
+                    .addComponent(afegirMarcaLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(92, 92, 92)
-                        .addComponent(jLabel3))
+                        .addComponent(afegirAnyLabel))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)))
+                        .addComponent(afegirUnitatsLabel)))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,14 +178,14 @@ public class View extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
+                            .addComponent(afegirMarcaLabel)
+                            .addComponent(afegirAnyLabel)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
+                            .addComponent(afegirModelLabel)
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
+                            .addComponent(afegirUnitatsLabel)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
@@ -260,20 +259,20 @@ public class View extends javax.swing.JFrame {
    
     
     //LABELS - FORMULARI
-    public JLabel getjLabel1() {
-        return jLabel1;
+    public JLabel getAfegirMarcaLabel() {
+        return afegirMarcaLabel;
     }
     
-    public JLabel getjLabel2() {
-        return jLabel2;
+    public JLabel getAfegirModelLabel() {
+        return afegirModelLabel;
     }
     
-    public JLabel getjLabel3() {
-        return jLabel3;
+    public JLabel getAfegirAnyLabel() {
+        return afegirAnyLabel;
     }
     
-    public JLabel getjLabel4() {
-        return jLabel4;
+    public JLabel getAfegirUnitatsLabel() {
+        return afegirUnitatsLabel;
     }
 
      
@@ -324,12 +323,12 @@ public class View extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel afegirAnyLabel;
+    private javax.swing.JLabel afegirMarcaLabel;
+    private javax.swing.JLabel afegirModelLabel;
+    private javax.swing.JLabel afegirUnitatsLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

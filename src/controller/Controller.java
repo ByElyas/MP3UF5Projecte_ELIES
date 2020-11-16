@@ -53,69 +53,56 @@ public class Controller implements ActionListener {
         
         
         //LABELS - FORMULARI
-        view.getjLabel1().setText("Marca Vehicle");
-        view.getjLabel2().setText("Model Vehicle");
-        view.getjLabel3().setText("Any Vehicle");
-        view.getjLabel4().setText("Unitat venudes");
+        view.getAfegirMarcaLabel().setText("Marca Vehicle");
+        view.getAfegirModelLabel().setText("Model Vehicle");
+        view.getAfegirAnyLabel().setText("Any Vehicle");
+        view.getAfegirUnitatsLabel().setText("Unitat venudes");
         
         //BOTÓ SUBMIT - FORMULARI
-        view.getjButton1().setText("Afegir registre");
+//        view.getjButton1().setText("Afegir registre");
         
         //TAULA
                 
         Vehicle model = new Vehicle();
 	view.getJTaula().setModel(model);
-        
-  
-        
-        
-        
-        
-        
-        
-        //Codi que assigna els listeners als components de la vista
 
-        //Coses
-
-//        String column[] = {"Marca Vehicle", "Vehicle Vehicle", "Any Vehicle", "Unitats venudes"};
-//        
-//        String data[][]= {
-//            {"a", "b", "c", "1"},
-//            {null, null, null, null},
-//            {null, null, null, null},
-//            {null, null, null, null}
-//        };
-//        
-//        
-//        model.setColumn(column);
-//        model.getColumn();
-//        model.setData(data);
-//        model.getData();
-//        
-//        JTable jtaula=new JTable(data,column);
-//        
-//        model.setJt(jtaula);
-//        
-//        view.getJTaula().addColumn(column);
-//        view.getJTaula().add(data);
-//        
-//        jtaula = new javax.swing.JTable();
+//                view.getjButton1().addActionListener(
+//                e -> {
+//                    
+//                    view.getjFieldText1().setText("hola");
+//                   
 //
-//        jtaula.setModel(new javax.swing.table.DefaultTableModel(
-//        new Object [][] {
-//            {null, null, null, null},
-//            {null, null, null, null},
-//            {null, null, null, null},
-//            {null, null, null, null}
-//        },
-//        new String [] {
-//            "Title 1", "Title 2", "Title 3", "Title 4"
-//        }
-//    ));
-
-
-
-
+//                }
+//        );
+        
+        
+        
+//         switch (view.getjComboBox1().getSelectedIndex()) {
+//                        case 0: //suma
+//
+//                            view.getjTextField1().setText(Integer.toString(m.suma()));
+//
+//                            break;
+//                        case 1: //divisió
+//                    try {
+//                            view.getjTextField1().setText(Integer.toString(m.divisio()));
+//                        } catch (java.lang.ArithmeticException ex) {
+//
+//                            view.getjTextField1().setText("ERROR");
+//
+//                        }
+//                        break;
+//
+//                    }
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
     }
@@ -126,25 +113,6 @@ public class Controller implements ActionListener {
     }
     
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

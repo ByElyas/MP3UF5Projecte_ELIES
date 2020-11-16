@@ -18,24 +18,24 @@ public class Vehicle extends DefaultTableModel {
     private String modelVehicle;
     private String anyVehicle;
     private int unitatsVenudes;
-    private String data[][];
-    String column[];
+    private String DATA[][];
+    String TABLE_HEADER[];
     JTable jtaula;
     
     public String[][] getData(){
-        return data;
+        return DATA;
     }
     
     public void setData(String[][] data) {
-        this.data = data;
+        this.DATA = data;
     }
     
     public String[] getColumn() {
-        return column;
+        return TABLE_HEADER;
     }
 
     public void setColumn(String[] column) {
-        this.column = column;
+        this.TABLE_HEADER = column;
     }
     
     public JTable getJtaula() {
