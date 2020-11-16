@@ -5,7 +5,6 @@
  */
 package model;
 
-import controller.Constants;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -80,7 +79,7 @@ public class Vehicle extends DefaultTableModel {
     }
     
     public Vehicle() {
-		super(Constants.DATA, Constants.TABLE_HEADER);
+		super(Model.DATA, Model.TABLE_HEADER);
     }
     
 }

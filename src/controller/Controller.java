@@ -62,13 +62,7 @@ public class Controller implements ActionListener {
         view.getjButton1().setText("Afegir registre");
         
         //TAULA
-        
-//        view.getJTaula().setTableHeader(nomColumnes);
-
-//        Utils.loadTable(nomColumnes, data, jtaula);
-//        view.getJTaula();
-        
-        
+                
         Vehicle model = new Vehicle();
 	view.getJTaula().setModel(model);
         
