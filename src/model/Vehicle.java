@@ -12,11 +12,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author profe
  */
-public class Vehicle extends DefaultTableModel {
+public class Vehicle {
     
     private String marcaVehicle;
     private String modelVehicle;
-    private String anyVehicle;
+    private int anyVehicle;
     private int unitatsVenudes;
     private String DATA[][];
     String TABLE_HEADER[];
@@ -66,7 +66,7 @@ public class Vehicle extends DefaultTableModel {
         this.anyVehicle = anyVehicle;
     }
     
-    public String getAnyVehicle() {
+    public int getAnyVehicle() {
         return anyVehicle;
     }
     
@@ -77,9 +77,14 @@ public class Vehicle extends DefaultTableModel {
     public int getUnitatsVenudes() {
         return unitatsVenudes;
     }
-    
-    public Vehicle() {
-		super(Model.DATA, Model.TABLE_HEADER);
+
+    public Vehicle(String marcaVehicle, String modelVehicle, int anyVehicle, int unitatsVenudes) {
+        this.marcaVehicle = marcaVehicle;
+        this.modelVehicle = modelVehicle;
+        this.anyVehicle = anyVehicle;
+        this.unitatsVenudes = unitatsVenudes;
     }
+    
+
     
 }

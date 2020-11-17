@@ -9,55 +9,35 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import model.Vehicle;
-import view.View;
+import java.util.ArrayList;
 
 /**
  *
  * @author eliesfatsini
  */
-public class Model {
+public class Model{
 
-    private final Vehicle model;
-    private static View view;
     
-    public static final String[] TABLE_HEADER = {"Marca Vehicle", "Model Vehicle", "Any Vehicle", "Unitats venudes"};
-    
-    public static final String[][] DATA = {
-        {"Nissan", "Skyline GTR R32", "1991", "3"},
-        {"Honda", "Civic", "1993", "34"},
-        {"Toyota", "Corolla AE86 Trueno", "1986", "0"},
-        {"Toyota", "Crown", "1994", "56"},
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null}
-    };
-    
-  
-    public Model(Vehicle m, View v) {
 
-        this.model = m;
-        this.view = v;
-        v.setVisible(true);
-        model();
-        
-        
+    
+    public static final String[] table_header = {"Marca Vehicle", "Model Vehicle", "Any Vehicle", "Unitats venudes"};
+    
+    public static final ArrayList<Vehicle> data = new ArrayList<Vehicle>(); 
+    
+
+    public Model() {
+        data.add(new Vehicle("Nissan", "Skyline GTR R32", 1991, 3));       
     }
-    
-    
-    
-    private void model() {
-        view.setVisible(true);
-        
-        view.getjButton1().setText("Hola que tal");
-        
-        view.getjButton1().addActionListener(
-                e -> {
-                    
-                    view.getjFieldText1().setText("hola");
 
-                }
-        );
+
+    
+    
+    
+    
+    public void insertarVehicle(String marca, String model, int any, int unitats) {
+
+        data.add(new Vehicle(marca, model, any, unitats));
+        
     }
 
     

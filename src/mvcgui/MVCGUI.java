@@ -6,7 +6,7 @@
 package mvcgui;
 
 import controller.Controller;
-import model.Vehicle;
+import model.Model;
 import view.View;
 
 /**
@@ -20,8 +20,8 @@ public class MVCGUI {
      */
     public static void main(String[] args) {
         // TODO code application logic here        
-        new Controller(new Vehicle(),new View());
-        
+        new Controller(new Model(),new View());
+
     }
     
 }

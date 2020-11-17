@@ -63,48 +63,8 @@ public class Controller implements ActionListener {
         
         //TAULA
                 
-        Vehicle model = new Vehicle();
-	view.getJTaula().setModel(model);
-
-//                view.getjButton1().addActionListener(
-//                e -> {
-//                    
-//                    view.getjFieldText1().setText("hola");
-//                   
-//
-//                }
-//        );
         
-        
-        
-//         switch (view.getjComboBox1().getSelectedIndex()) {
-//                        case 0: //suma
-//
-//                            view.getjTextField1().setText(Integer.toString(m.suma()));
-//
-//                            break;
-//                        case 1: //divisió
-//                    try {
-//                            view.getjTextField1().setText(Integer.toString(m.divisio()));
-//                        } catch (java.lang.ArithmeticException ex) {
-//
-//                            view.getjTextField1().setText("ERROR");
-//
-//                        }
-//                        break;
-//
-//                    }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+      
     }
 
     @Override
