@@ -50,14 +50,14 @@ public class View extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        afegirMarcaText = new javax.swing.JTextField();
         afegirMarcaLabel = new javax.swing.JLabel();
         afegirModelLabel = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        afegirModelText = new javax.swing.JTextField();
         afegirAnyLabel = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        afegirUnitatsLabel = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        afegirAnyText = new javax.swing.JTextField();
+        afegirNumeroLabel = new javax.swing.JLabel();
+        afegirNumeroText = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -120,10 +120,10 @@ public class View extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(169, 169, 169));
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        afegirMarcaText.setText("jTextField1");
+        afegirMarcaText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                afegirMarcaTextActionPerformed(evt);
             }
         });
 
@@ -131,15 +131,20 @@ public class View extends javax.swing.JFrame {
 
         afegirModelLabel.setText("jLabel2");
 
-        jTextField2.setText("jTextField2");
+        afegirModelText.setText("jTextField2");
+        afegirModelText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                afegirModelTextActionPerformed(evt);
+            }
+        });
 
         afegirAnyLabel.setText("jLabel3");
 
-        jTextField3.setText("jTextField3");
+        afegirAnyText.setText("jTextField3");
 
-        afegirUnitatsLabel.setText("jLabel4");
+        afegirNumeroLabel.setText("jLabel4");
 
-        jTextField4.setText("jTextField4");
+        afegirNumeroText.setText("jTextField4");
 
         jButton1.setText("jButton1");
 
@@ -155,17 +160,17 @@ public class View extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(afegirMarcaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(92, 92, 92)
                         .addComponent(afegirAnyLabel))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(afegirModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(afegirUnitatsLabel)))
+                        .addComponent(afegirNumeroLabel)))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(afegirAnyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(afegirNumeroText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(153, 153, 153))
@@ -177,16 +182,16 @@ public class View extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(afegirMarcaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(afegirMarcaLabel)
                             .addComponent(afegirAnyLabel)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(afegirAnyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(afegirModelLabel)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(afegirUnitatsLabel)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(afegirModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(afegirNumeroLabel)
+                            .addComponent(afegirNumeroText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jButton1)))
@@ -218,9 +223,13 @@ public class View extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void afegirMarcaTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afegirMarcaTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_afegirMarcaTextActionPerformed
+
+    private void afegirModelTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afegirModelTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_afegirModelTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,8 +280,8 @@ public class View extends javax.swing.JFrame {
         return afegirAnyLabel;
     }
     
-    public JLabel getAfegirUnitatsLabel() {
-        return afegirUnitatsLabel;
+    public JLabel getAfegirNumeroLabel() {
+        return afegirNumeroLabel;
     }
 
      
@@ -283,20 +292,20 @@ public class View extends javax.swing.JFrame {
     
     
     //TEXTOS - FORMULARI
-    public JTextField getjFieldText1() {
-        return jTextField1;
+    public JTextField getAfegirMarcaText() {
+        return afegirMarcaText;
     }
     
-    public JTextField getjFieldText2() {
-        return jTextField2;
+    public JTextField getAfegirModelText() {
+        return afegirModelText;
     }
     
-    public JTextField getjFieldText3() {
-        return jTextField3;
+    public JTextField getAfegirAnyText() {
+        return afegirAnyText;
     }
     
-    public JTextField getjFieldText4() {
-        return jTextField4;
+    public JTextField getAfegirNumeroText() {
+        return afegirNumeroText;
     }
     
    
@@ -324,19 +333,19 @@ public class View extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel afegirAnyLabel;
+    private javax.swing.JTextField afegirAnyText;
     private javax.swing.JLabel afegirMarcaLabel;
+    private javax.swing.JTextField afegirMarcaText;
     private javax.swing.JLabel afegirModelLabel;
-    private javax.swing.JLabel afegirUnitatsLabel;
+    private javax.swing.JTextField afegirModelText;
+    private javax.swing.JLabel afegirNumeroLabel;
+    private javax.swing.JTextField afegirNumeroText;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTable jtaula;
     // End of variables declaration//GEN-END:variables

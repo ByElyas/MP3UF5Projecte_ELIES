@@ -10,7 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import model.Model;
 import model.Vehicle;
 import view.View;
 import utilscontroller.Utils;
@@ -21,15 +23,14 @@ import utilscontroller.Utils;
  */
 public class Controller implements ActionListener {
     
-    private static Vehicle model;
+    private static Model model;
     private static View view;
     
-    public Controller(Vehicle m, View v){
-        this.view = v;
-        this.model = m;
-        v.setVisible(true);
-        controlador();
+    public Controller(Model m, View v){
+        view = v;
+        model = m;
         
+        controlador();        
     }
     
     private void controlador(){
@@ -44,11 +45,11 @@ public class Controller implements ActionListener {
         view.getjButton2().setText("Filtrar!");
         
         //CAIXES DE TEXT - FORMULARI
-//        view.getjFieldText1().setSize(0, 0);
-        view.getjFieldText1().setText("0                  ");
-        view.getjFieldText2().setText("0                  ");
-        view.getjFieldText3().setText("0                  ");
-        view.getjFieldText4().setText("0                  ");
+//        view.getAfegirMarcaText().setSize(0, 0);
+        view.getAfegirMarcaText().setText("0                  ");
+        view.getAfegirModelText().setText("0                  ");
+        view.getAfegirAnyText().setText("0                  ");
+        view.getAfegirNumeroText().setText("0                  ");
         
         
         
@@ -56,17 +57,37 @@ public class Controller implements ActionListener {
         view.getAfegirMarcaLabel().setText("Marca Vehicle");
         view.getAfegirModelLabel().setText("Model Vehicle");
         view.getAfegirAnyLabel().setText("Any Vehicle");
-        view.getAfegirUnitatsLabel().setText("Unitat venudes");
+        view.getAfegirNumeroLabel().setText("Numero Vehicle");
         
         //BOTÓ SUBMIT - FORMULARI
 //        view.getjButton1().setText("Afegir registre");
         
         //TAULA
-                
-        
-      
+        //Insertar dades per defecte localitzades a Model.java        
+        DefaultTableModel modelTaula = new DefaultTableModel(Model.table_header,0);    
+        for (int i = 0; i < Model.data.size(); i++) {
+            String marca = Model.data.get(i).getMarcaVehicle();
+            String model = Model.data.get(i).getModelVehicle();
+            int any = Model.data.get(i).getAnyVehicle();
+            int numero = Model.data.get(i).getNumeroVehicle();
+            
+            Object[] dades = {marca, model, any, numero};
+            
+            modelTaula.addRow(dades);
+        }     
+        view.getJTaula().setModel(modelTaula);      
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

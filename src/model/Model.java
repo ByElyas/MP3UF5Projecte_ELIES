@@ -20,13 +20,16 @@ public class Model{
     
 
     
-    public static final String[] table_header = {"Marca Vehicle", "Model Vehicle", "Any Vehicle", "Unitats venudes"};
+    public static final String table_header[] = {"Marca Vehicle", "Model Vehicle", "Any Vehicle", "Numero Vehicle"};
     
     public static final ArrayList<Vehicle> data = new ArrayList<Vehicle>(); 
     
 
     public Model() {
-        data.add(new Vehicle("Nissan", "Skyline GTR R32", 1991, 3));       
+        data.add(new Vehicle("Nissan", "Skyline GTR R32", 1991, 22));  
+        data.add(new Vehicle("Toyota", "Corolla Trueno AE86", 1986, 86)); 
+        data.add(new Vehicle("Nissan", "Silvia S14", 1994, 27)); 
+        data.add(new Vehicle("Mazda", "RX-7 FC", 1989, 6)); 
     }
 
 
@@ -34,9 +37,9 @@ public class Model{
     
     
     
-    public void insertarVehicle(String marca, String model, int any, int unitats) {
+    public void insertarVehicle(String marca, String model, int any, int numero) {
 
-        data.add(new Vehicle(marca, model, any, unitats));
+        data.add(new Vehicle(marca, model, any, numero));
         
     }
 

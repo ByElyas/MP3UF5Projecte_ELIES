@@ -17,7 +17,7 @@ public class Vehicle {
     private String marcaVehicle;
     private String modelVehicle;
     private int anyVehicle;
-    private int unitatsVenudes;
+    private int numeroVehicle;
     private String DATA[][];
     String TABLE_HEADER[];
     JTable jtaula;
@@ -70,19 +70,19 @@ public class Vehicle {
         return anyVehicle;
     }
     
-    public void setUnitatsVenudes() {
-        this.unitatsVenudes = unitatsVenudes;
+    public void setNumeroVehicle() {
+        this.numeroVehicle = numeroVehicle;
     }
     
-    public int getUnitatsVenudes() {
-        return unitatsVenudes;
+    public int getNumeroVehicle() {
+        return numeroVehicle;
     }
 
-    public Vehicle(String marcaVehicle, String modelVehicle, int anyVehicle, int unitatsVenudes) {
+    public Vehicle(String marcaVehicle, String modelVehicle, int anyVehicle, int numeroVehicle) {
         this.marcaVehicle = marcaVehicle;
         this.modelVehicle = modelVehicle;
         this.anyVehicle = anyVehicle;
-        this.unitatsVenudes = unitatsVenudes;
+        this.numeroVehicle = numeroVehicle;
     }
     
 
