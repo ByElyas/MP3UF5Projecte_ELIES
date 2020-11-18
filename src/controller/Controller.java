@@ -46,10 +46,10 @@ public class Controller implements ActionListener {
         
         //CAIXES DE TEXT - FORMULARI
 //        view.getAfegirMarcaText().setSize(0, 0);
-        view.getAfegirMarcaText().setText("0                  ");
-        view.getAfegirModelText().setText("0                  ");
-        view.getAfegirAnyText().setText("0                  ");
-        view.getAfegirNumeroText().setText("0                  ");
+        view.getAfegirMarcaText().setText("aaaaaaaaaaaaa");
+        view.getAfegirModelText().setText("aaaaaaaaaaa");
+        view.getAfegirAnyText().setText("000000000000");
+        view.getAfegirNumeroText().setText("0000000000");
         
         
         
@@ -60,10 +60,17 @@ public class Controller implements ActionListener {
         view.getAfegirNumeroLabel().setText("Numero Vehicle");
         
         //BOTÓ SUBMIT - FORMULARI
-//        view.getjButton1().setText("Afegir registre");
+        view.getAfegirVehicleButton().setText("Afegir registre");
+        
+        
+        //FORMULARI ELIMINAR - TEXT DEFECTE
+        view.getEliminarVehicleButton().setText("Eliminar!");
+        view.getEliminarVehicleLabel().setText("Numero del vehicle a eliminar");
+        view.getEliminarVehicleText().setText("000");
+        
         
         //TAULA
-        //Insertar dades per defecte localitzades a Model.java        
+        //Carregar les dades localitzades a Model.java, tambè servirà per al insertar dades haha!       
         DefaultTableModel modelTaula = new DefaultTableModel(Model.table_header,0);    
         for (int i = 0; i < Model.data.size(); i++) {
             String marca = Model.data.get(i).getMarcaVehicle();
@@ -75,7 +82,30 @@ public class Controller implements ActionListener {
             
             modelTaula.addRow(dades);
         }     
-        view.getJTaula().setModel(modelTaula);      
+        view.getJTaula().setModel(modelTaula); 
+        
+        
+        //Coses de botóns que farán coses
+                view.getAfegirVehicleButton().addActionListener(
+                e -> {
+                            model.insertarVehicle(view.getAfegirMarcaText().getText(), 
+                            view.getAfegirModelText().getText(), 
+                            Integer.parseInt(view.getAfegirAnyText().getText()), 
+                            Integer.parseInt(view.getAfegirNumeroText().getText())
+                                    
+                            
+                    );
+                    controlador();
+                    
+                }
+        );
+        
+        
+        
+        
+        
+        
+        
     }
 
     
