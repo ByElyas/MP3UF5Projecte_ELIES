@@ -14,16 +14,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Vehicle implements Comparable<Vehicle> {
     
-    private String _1_marca_Vehicle;
+    private String _4_marca_Vehicle;
     private String _2_model_Vehicle;
     private int _3_any_Vehicle;
+    private int _1_numero_Vehicle;
 
-    public String get1_marca_Vehicle() {
-        return _1_marca_Vehicle;
+    public String get4_marca_Vehicle() {
+        return _4_marca_Vehicle;
     }
 
-    public void set1_marca_Vehicle(String _1_marcaVehicle) {
-        this._1_marca_Vehicle = _1_marca_Vehicle;
+    public void set4_marca_Vehicle(String _4_marcaVehicle) {
+        this._4_marca_Vehicle = _4_marcaVehicle;
     }
 
     public String get2_model_Vehicle() {
@@ -42,101 +43,30 @@ public class Vehicle implements Comparable<Vehicle> {
         this._3_any_Vehicle = _3_anyVehicle;
     }
 
-    public int get4_numero_Vehicle() {
-        return _4_numero_Vehicle;
+    public int get1_numero_Vehicle() {
+        return _1_numero_Vehicle;
     }
 
-    public void set4_numero_Vehicle(int _4_numeroVehicle) {
-        this._4_numero_Vehicle = _4_numeroVehicle;
+    public void set1_numero_Vehicle(int _1_numeroVehicle) {
+        this._1_numero_Vehicle = _1_numeroVehicle;
     }
-    private int _4_numero_Vehicle;
 
-    public Vehicle(String _1_marcaVehicle, String _2_modelVehicle, int _3_anyVehicle, int _4_numeroVehicle) {
-        this._1_marca_Vehicle = _1_marcaVehicle;
+
+    public Vehicle(String _4_marcaVehicle, String _2_modelVehicle, int _3_anyVehicle, int _1_numeroVehicle) {
+        this._4_marca_Vehicle = _4_marcaVehicle;
         this._2_model_Vehicle = _2_modelVehicle;
         this._3_any_Vehicle = _3_anyVehicle;
-        this._4_numero_Vehicle = _4_numeroVehicle;
+        this._1_numero_Vehicle = _1_numeroVehicle;
     }
 
 
-    JTable jtaula;
     
-    
+
     @Override
     public int compareTo(Vehicle o) {
-        return this._4_numero_Vehicle-o._4_numero_Vehicle;
+        return this._1_numero_Vehicle-o._1_numero_Vehicle;
     }
-    
-    
-////    private String DATA[][];
-////    String TABLE_HEADER[];
-//    public void setData(String[][] data) {
-////        this.DATA = data;
-////    }
-////    
-////    public String[][] getData(){
-////        return DATA;
-////    }
-////    
-////
-////    
-////    public String[] getColumn() {
-////        return TABLE_HEADER;
-////    }
-////
-////    public void setColumn(String[] column) {
-////        this.TABLE_HEADER = column;
-////    }
-    
-//    public JTable getJtaula() {
-//        return jtaula;
-//    }
-//
-//    public void setJt(JTable jtaula) {
-//        this.jtaula = jtaula;
-//    }
-//    
-//    public void setMarcaVehicle() {
-//        this.marcaVehicle = marcaVehicle;
-//    }
-//    
-//    public String getMarcaVehicle() {
-//        return marcaVehicle;
-//    }
-//    
-//    public void setModelVehicle() {
-//        this.modelVehicle = modelVehicle;
-//    }
-//    
-//    public String getModelVehicle() {
-//        return modelVehicle;
-//    }
-//    
-//    public void setAnyVehicle() {
-//        this.anyVehicle = anyVehicle;
-//    }
-//    
-//    public int getAnyVehicle() {
-//        return anyVehicle;
-//    }
-//    
-//    public void setNumeroVehicle() {
-//        this.numeroVehicle = numeroVehicle;
-//    }
-//    
-//    public int getNumeroVehicle() {
-//        return numeroVehicle;
-//    }
-//
-//    public Vehicle(String marcaVehicle, String modelVehicle, int anyVehicle, int numeroVehicle) {
-//        this.marcaVehicle = marcaVehicle;
-//        this.modelVehicle = modelVehicle;
-//        this.anyVehicle = anyVehicle;
-//        this.numeroVehicle = numeroVehicle;
-//    }
-
-
-    
+        
 
     
 }

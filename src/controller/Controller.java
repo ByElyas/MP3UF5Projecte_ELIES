@@ -50,9 +50,9 @@ public class Controller {
         view.getAfegirNumeroText().setText("999");
 
         //FILTRE
-        view.getjLabel5().setText("Filtrar per marca:");
-        view.getjFieldText5().setText("Exemple               ");
-        view.getjButton2().setText("Filtrar!");
+        view.getFiltrarVehiclesCombobox().removeAllItems();
+        view.getFiltrarVehiclesCombobox().addItem("Ordenar per numero");
+        view.getFiltrarVehiclesCombobox().addItem("Ordenar per marca");
 
         //LABELS - FORMULARI
         view.getAfegirMarcaLabel().setText("Marca Vehicle");
@@ -64,31 +64,11 @@ public class Controller {
         view.getAfegirVehicleButton().setText("Afegir registre");
 
         //FORMULARI ELIMINAR - TEXT DEFECTE
-        view.getEliminarVehicleButton().setText("Eliminar fila sel·leccionada!");
+        view.getEliminarVehicleButton().setText("Eliminar fila!");
     }
 
     public void carregarTaula() {
-////        DefaultTableModel modelTaula = new DefaultTableModel(Model.table_header, 0);
-//        for (int i = 0; i < Model.data.size(); i++) {
-//            String marca = Model.data.get(i).getMarcaVehicle();
-//            String model = Model.data.get(i).getModelVehicle();
-//            int any = Model.data.get(i).getAnyVehicle();
-//            int numero = Model.data.get(i).getNumeroVehicle();
-//
-//            Object[] dades = {marca, model, any, numero};
-//
-//            modelTaula.addRow(dades);
-
-//         for (int i = 0; i < model.getData().size(); i++) {
-//               Utils.<Vehicle>loadTable(model.getData(), view.getJTaula(), Vehicle.class, true, true);
-//         }
-
-//         view.getJTaula().setModel(modelTaula);
-//         for (int i = 0; i < model.getData().size(); i++) {
-//               Utils.<Vehicle>loadTable(model.getData(), view.getJTaula(), Vehicle.class, true, true);
-//         }
-
-           tc = Utils.<Vehicle>loadTable(model.getData(), view.getJTaula(), Vehicle.class, true, true);
+           tc = Utils.<Vehicle>loadTable(model.getData(), view.getJTaulaVehicles(), Vehicle.class, true, true);
     }
 
     private void controlador() {
@@ -121,31 +101,48 @@ public class Controller {
 
         //eliminarVehicle
         
-        view.getJTaula().addMouseListener(
+        view.getJTaulaVehicles().addMouseListener(
         
                 new MouseAdapter(){
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        filaSel=view.getJTaula().getSelectedRow();
+                        filaSel=view.getJTaulaVehicles().getSelectedRow();
                     }             
                 } 
         );
         
         view.getEliminarVehicleButton().addActionListener(
                 e -> {
-                    System.out.println(filaSel);
-                    if (filaSel!=-1) {
-                        TableColumnModel tcm = view.getJTaula().getColumnModel();
+//                    System.out.println(filaSel);
+                    if (filaSel!=-1) {                        
+                        TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
                         tcm.addColumn(tc);
-                        Vehicle veh=(Vehicle)view.getJTaula().getValueAt(filaSel, tcm.getColumnCount()-1);
+                        System.out.println(filaSel);  
+                        Vehicle veh=(Vehicle)view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount()-1);
+//                        System.out.println(veh.toString());
                         tcm.removeColumn(tc);
                         model.eliminarVehicle(veh);
                         carregarTaula();
                         filaSel=-1;
                     }else {
+                        System.out.println(filaSel);  
                         JOptionPane.showMessageDialog(view,"Has de seleccionar una fila per a borrarla!");
-                    }                    
+                    }                  
                 }
+        );
+        
+        view.getFiltrarVehiclesCombobox().addItemListener(
+                
+                e->{
+                    if (view.getFiltrarVehiclesCombobox().getSelectedIndex()==0) {
+                       carregarTaula();
+                    }
+                    if (view.getFiltrarVehiclesCombobox().getSelectedIndex()==1) {
+                       model.getDataOrd().addAll(model.getData());
+                       tc = Utils.<Vehicle>loadTable(model.getDataOrd(), view.getJTaulaVehicles(), Vehicle.class, true, true);
+                    }
+                }
+        
         );
     }
 

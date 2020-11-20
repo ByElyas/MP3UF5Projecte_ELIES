@@ -8,6 +8,8 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.TreeSet;
 
 /**
  *
@@ -22,21 +24,25 @@ public class Model{
     
 
     public Model() {
+        data.add(new Vehicle("Mazda", "RX-7 FC", 1989, 6)); 
         data.add(new Vehicle("Nissan", "Skyline GTR R32", 1991, 22));  
         data.add(new Vehicle("Toyota", "Corolla Trueno AE86", 1986, 86)); 
-        data.add(new Vehicle("Nissan", "Silvia S14", 1994, 27)); 
-        data.add(new Vehicle("Mazda", "RX-7 FC", 1989, 6)); 
+        data.add(new Vehicle("Nissan", "Silvia S15", 1998, 66)); 
+        data.add(new Vehicle("Audi", "Quattro Sport", 1988, 15)); 
+        data.add(new Vehicle("BMW", "M3 GTR", 2005, 19)); 
     }
 
 
-//    public ArrayList<Vehicle> getDades() {
-//        return data;
-//    }
+
     
-    private Collection<Vehicle> data = new ArrayList<>();
+    private Collection<Vehicle> data = new TreeSet<>();
+    private Collection<Vehicle> dataOrd = new TreeSet<>(new VehicleOrdenatMarca());
     
     public Collection<Vehicle> getData() {
         return data;
+    }
+    public Collection<Vehicle> getDataOrd() {
+        return dataOrd;
     }
     
     
@@ -50,3 +56,19 @@ public class Model{
       
     
 }
+
+class VehicleOrdenatMarca implements Comparator<Vehicle> {
+
+    @Override
+    public int compare(Vehicle o1, Vehicle o2) {
+        return o1.get4_marca_Vehicle().compareTo(o2.get4_marca_Vehicle());
+    }
+    
+}
+
+
+
+
+
+
+
