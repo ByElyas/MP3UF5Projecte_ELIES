@@ -60,9 +60,7 @@ public class View extends javax.swing.JFrame {
         afegirNumeroText = new javax.swing.JTextField();
         afegirVehicleButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        eliminarVehicleText = new javax.swing.JTextField();
         eliminarVehicleButton = new javax.swing.JButton();
-        eliminarVehicleLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Llistat Vehicles");
@@ -84,6 +82,7 @@ public class View extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtaula.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jtaula);
 
         jTextField5.setText("jTextField5");
@@ -204,13 +203,6 @@ public class View extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(169, 169, 169));
 
-        eliminarVehicleText.setText("jTextField1");
-        eliminarVehicleText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarVehicleTextActionPerformed(evt);
-            }
-        });
-
         eliminarVehicleButton.setText("jButton1");
         eliminarVehicleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,34 +210,21 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        eliminarVehicleLabel.setText("jLabel1");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(eliminarVehicleText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                        .addComponent(eliminarVehicleButton)
-                        .addGap(27, 27, 27))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(eliminarVehicleLabel)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(65, 65, 65)
+                .addComponent(eliminarVehicleButton)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(9, Short.MAX_VALUE)
-                .addComponent(eliminarVehicleLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eliminarVehicleText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eliminarVehicleButton))
-                .addGap(29, 29, 29))
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addComponent(eliminarVehicleButton)
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -289,10 +268,6 @@ public class View extends javax.swing.JFrame {
     private void eliminarVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarVehicleButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eliminarVehicleButtonActionPerformed
-
-    private void eliminarVehicleTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarVehicleTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eliminarVehicleTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,13 +372,6 @@ public class View extends javax.swing.JFrame {
         return eliminarVehicleButton;
     }
     
-    public JTextField getEliminarVehicleText() {
-        return eliminarVehicleText;
-    }
-    
-    public JLabel getEliminarVehicleLabel() {
-        return eliminarVehicleLabel;
-    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -417,8 +385,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JTextField afegirNumeroText;
     private javax.swing.JButton afegirVehicleButton;
     private javax.swing.JButton eliminarVehicleButton;
-    private javax.swing.JLabel eliminarVehicleLabel;
-    private javax.swing.JTextField eliminarVehicleText;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
