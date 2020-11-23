@@ -57,9 +57,43 @@ public class View extends javax.swing.JFrame {
         afegirNumeroText = new javax.swing.JTextField();
         afegirVehicleButton = new javax.swing.JButton();
         eliminarVehicleButton = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
         filtrarVehiclesCombobox = new javax.swing.JComboBox<>();
+        vehicleLabel = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        editarMarcaLabel = new javax.swing.JLabel();
+        editarModelLabel = new javax.swing.JLabel();
+        editarMarcaText = new javax.swing.JTextField();
+        editarModelText = new javax.swing.JTextField();
+        editarAnyLabel = new javax.swing.JLabel();
+        editarNumeroLabel = new javax.swing.JLabel();
+        editarAnyText = new javax.swing.JTextField();
+        editarNumeroText = new javax.swing.JTextField();
+        editarVehicleButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtaulaconductor = new javax.swing.JTable();
+        afegirNomConductorLabel = new javax.swing.JLabel();
+        afegirCognomConductorLabel = new javax.swing.JLabel();
+        afegirNomConductorText = new javax.swing.JTextField();
+        afegirCognomConductorText = new javax.swing.JTextField();
+        afegirEdatConductorLabel = new javax.swing.JLabel();
+        afegirIdConductorLabel = new javax.swing.JLabel();
+        afegirEdatConductorText = new javax.swing.JTextField();
+        afegirIdConductorText = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        editarNomConductorLabel = new javax.swing.JLabel();
+        editarNomConductorText = new javax.swing.JTextField();
+        editarCognomConductorLabel = new javax.swing.JLabel();
+        editarCognomConductorText = new javax.swing.JTextField();
+        editarEdatConductorLabel = new javax.swing.JLabel();
+        editarIdConductorLabel = new javax.swing.JLabel();
+        editarEdatConductorText = new javax.swing.JTextField();
+        editarIdConductorText = new javax.swing.JTextField();
+        conductorLabel = new javax.swing.JLabel();
+        filtrarCodnuctorCombobox = new javax.swing.JComboBox<>();
+        eliminarConductorButton = new javax.swing.JButton();
+        editarConductorButton = new javax.swing.JButton();
+        afegirConductorButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Llistat Vehicles");
@@ -119,94 +153,317 @@ public class View extends javax.swing.JFrame {
             }
         });
 
+        filtrarVehiclesCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        vehicleLabel.setText("jLabel1");
+
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        filtrarVehiclesCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        editarMarcaLabel.setText("jLabel1");
+
+        editarModelLabel.setText("jLabel2");
+
+        editarMarcaText.setText("jTextField1");
+        editarMarcaText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarMarcaTextActionPerformed(evt);
+            }
+        });
+
+        editarModelText.setText("jTextField2");
+
+        editarAnyLabel.setText("jLabel3");
+
+        editarNumeroLabel.setText("jLabel4");
+
+        editarAnyText.setText("jTextField3");
+
+        editarNumeroText.setText("jTextField4");
+
+        editarVehicleButton.setText("jButton1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(afegirModelLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(afegirModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(afegirMarcaLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(afegirMarcaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(afegirAnyLabel)
-                            .addComponent(afegirNumeroLabel))
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 805, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(afegirAnyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(afegirNumeroText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(afegirVehicleButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 792, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(eliminarVehicleButton)
-                            .addComponent(filtrarVehiclesCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41))))
+                            .addComponent(filtrarVehiclesCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(vehicleLabel)
+                            .addComponent(editarVehicleButton)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(afegirMarcaLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(afegirMarcaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(afegirAnyLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(afegirAnyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(afegirVehicleButton))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(afegirModelLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(afegirModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(afegirNumeroLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(afegirNumeroText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(editarModelLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editarModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(editarNumeroLabel))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(editarMarcaLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editarMarcaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(editarAnyLabel)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editarAnyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editarNumeroText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(449, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(vehicleLabel)
+                        .addGap(24, 24, 24)
+                        .addComponent(eliminarVehicleButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(filtrarVehiclesCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(editarVehicleButton))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(eliminarVehicleButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(filtrarVehiclesCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(afegirVehicleButton))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(afegirAnyLabel)
+                                .addComponent(afegirAnyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(afegirVehicleButton))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(afegirMarcaLabel)
+                                .addComponent(afegirMarcaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(afegirModelLabel)
+                            .addComponent(afegirModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(afegirNumeroLabel)
+                            .addComponent(afegirNumeroText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(afegirMarcaLabel)
-                                    .addComponent(afegirMarcaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(afegirAnyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(afegirAnyLabel))
-                                .addGap(18, 18, 18)
+                                    .addComponent(editarMarcaLabel)
+                                    .addComponent(editarMarcaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(editarAnyLabel)
+                                    .addComponent(editarAnyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(afegirModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(afegirModelLabel)
-                                    .addComponent(afegirNumeroLabel)
-                                    .addComponent(afegirNumeroText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(editarModelLabel)
+                                    .addComponent(editarModelText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(editarNumeroLabel)
+                                    .addComponent(editarNumeroText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(17, 17, 17))))))
         );
 
         jPanel2.setBackground(new java.awt.Color(169, 169, 169));
+
+        jtaulaconductor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jtaulaconductor);
+
+        afegirNomConductorLabel.setText("jLabel1");
+
+        afegirCognomConductorLabel.setText("jLabel2");
+
+        afegirNomConductorText.setText("jTextField1");
+
+        afegirCognomConductorText.setText("jTextField2");
+
+        afegirEdatConductorLabel.setText("jLabel3");
+
+        afegirIdConductorLabel.setText("jLabel4");
+
+        afegirEdatConductorText.setText("jTextField3");
+
+        afegirIdConductorText.setText("jTextField4");
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        editarNomConductorLabel.setText("jLabel5");
+
+        editarNomConductorText.setText("jTextField5");
+
+        editarCognomConductorLabel.setText("jLabel6");
+
+        editarCognomConductorText.setText("jTextField6");
+
+        editarEdatConductorLabel.setText("jLabel7");
+
+        editarIdConductorLabel.setText("jLabel8");
+
+        editarEdatConductorText.setText("jTextField7");
+
+        editarIdConductorText.setText("jTextField8");
+
+        conductorLabel.setText("jLabel9");
+
+        filtrarCodnuctorCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        eliminarConductorButton.setText("jButton1");
+
+        editarConductorButton.setText("jButton2");
+
+        afegirConductorButton.setText("jButton1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 992, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 805, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(conductorLabel)
+                            .addComponent(filtrarCodnuctorCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(eliminarConductorButton)
+                            .addComponent(editarConductorButton)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(afegirNomConductorLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(afegirNomConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(afegirEdatConductorLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(afegirEdatConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(afegirCognomConductorLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(afegirCognomConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(afegirIdConductorLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(afegirIdConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(afegirConductorButton)))
+                        .addGap(45, 45, 45)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(editarCognomConductorLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editarCognomConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(editarIdConductorLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editarIdConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(editarNomConductorLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editarNomConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(editarEdatConductorLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editarEdatConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 74, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(conductorLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminarConductorButton)
+                        .addGap(9, 9, 9)
+                        .addComponent(filtrarCodnuctorCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(editarConductorButton))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(afegirNomConductorLabel)
+                                    .addComponent(afegirNomConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(afegirEdatConductorLabel)
+                                    .addComponent(afegirEdatConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(afegirCognomConductorLabel)
+                                            .addComponent(afegirCognomConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(afegirIdConductorLabel)
+                                            .addComponent(afegirIdConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(1, 1, 1)
+                                        .addComponent(afegirConductorButton))))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editarEdatConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(editarNomConductorLabel)
+                                    .addComponent(editarNomConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(editarEdatConductorLabel))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(editarCognomConductorLabel)
+                                .addComponent(editarCognomConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(editarIdConductorLabel)
+                                .addComponent(editarIdConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,10 +481,10 @@ public class View extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -245,6 +502,10 @@ public class View extends javax.swing.JFrame {
     private void eliminarVehicleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarVehicleButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eliminarVehicleButtonActionPerformed
+
+    private void editarMarcaTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarMarcaTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editarMarcaTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,6 +542,13 @@ public class View extends javax.swing.JFrame {
         });
     }
    
+    //COSES VEHICLE
+    
+    //TITOL
+    public JLabel getVehicleLabel() {
+        return vehicleLabel;
+    }
+    
     
     //LABELS - FORMULARI
     public JLabel getAfegirMarcaLabel() {
@@ -323,6 +591,44 @@ public class View extends javax.swing.JFrame {
         return afegirNumeroText;
     }
     
+    //FORMULARI - EDITAR
+
+    public JLabel getEditarAnyLabel() {
+        return editarAnyLabel;
+    }
+
+    public JTextField getEditarAnyText() {
+        return editarAnyText;
+    }
+
+    public JLabel getEditarMarcaLabel() {
+        return editarMarcaLabel;
+    }
+
+    public JTextField getEditarMarcaText() {
+        return editarMarcaText;
+    }
+
+    public JLabel getEditarModelLabel() {
+        return editarModelLabel;
+    }
+
+    public JTextField getEditarModelText() {
+        return editarModelText;
+    }
+
+    public JLabel getEditarNumeroLabel() {
+        return editarNumeroLabel;
+    }
+
+    public JTextField getEditarNumeroText() {
+        return editarNumeroText;
+    }
+
+    public JButton getEditarVehicleButton() {
+        return editarVehicleButton;
+    }
+    
    
     
     //FILTRE 
@@ -343,24 +649,152 @@ public class View extends javax.swing.JFrame {
     }
     
     
+    //Coses conductor
+    
+    public JLabel getAfegirCognomConductorLabel() {
+        return afegirCognomConductorLabel;
+    }
+
+    public JTextField getAfegirCognomConductorText() {
+        return afegirCognomConductorText;
+    }
+
+    public JLabel getAfegirEdatConductorLabel() {
+        return afegirEdatConductorLabel;
+    }
+
+    public JTextField getAfegirEdatConductorText() {
+        return afegirEdatConductorText;
+    }
+
+    public JLabel getAfegirIdConductorLabel() {
+        return afegirIdConductorLabel;
+    }
+
+    public JTextField getAfegirIdConductorText() {
+        return afegirIdConductorText;
+    }
+
+    public JLabel getAfegirNomConductorLabel() {
+        return afegirNomConductorLabel;
+    }
+
+    public JTextField getAfegirNomConductorText() {
+        return afegirNomConductorText;
+    }
+
+    public JLabel getConductorLabel() {
+        return conductorLabel;
+    }
+
+    public JLabel getEditarCognomConductorLabel() {
+        return editarCognomConductorLabel;
+    }
+
+    public JTextField getEditarCognomConductorText() {
+        return editarCognomConductorText;
+    }
+
+    public JButton getEditarConductorButton() {
+        return editarConductorButton;
+    }
+
+    public JLabel getEditarEdatConductorLabel() {
+        return editarEdatConductorLabel;
+    }
+
+    public JTextField getEditarEdatConductorText() {
+        return editarEdatConductorText;
+    }
+
+    public JLabel getEditarIdConductorLabel() {
+        return editarIdConductorLabel;
+    }
+
+    public JTextField getEditarIdConductorText() {
+        return editarIdConductorText;
+    }
+
+    public JLabel getEditarNomConductorLabel() {
+        return editarNomConductorLabel;
+    }
+
+    public JTextField getEditarNomConductorText() {
+        return editarNomConductorText;
+    }
+
+    public JButton getEliminarConductorButton() {
+        return eliminarConductorButton;
+    }
+
+    public JComboBox<String> getFiltrarConductorCombobox() {
+        return filtrarCodnuctorCombobox;
+    }
+
+    public JTable getJTaulaConductor() {
+        return jtaulaconductor;
+    }
+    
+    //BOTO SUBMIT - FORMULARI
+    public JButton getAfegirConductorButton() {
+        return afegirConductorButton;
+    }
+    
+    
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel afegirAnyLabel;
     private javax.swing.JTextField afegirAnyText;
+    private javax.swing.JLabel afegirCognomConductorLabel;
+    private javax.swing.JTextField afegirCognomConductorText;
+    private javax.swing.JButton afegirConductorButton;
+    private javax.swing.JLabel afegirEdatConductorLabel;
+    private javax.swing.JTextField afegirEdatConductorText;
+    private javax.swing.JLabel afegirIdConductorLabel;
+    private javax.swing.JTextField afegirIdConductorText;
     private javax.swing.JLabel afegirMarcaLabel;
     private javax.swing.JTextField afegirMarcaText;
     private javax.swing.JLabel afegirModelLabel;
     private javax.swing.JTextField afegirModelText;
+    private javax.swing.JLabel afegirNomConductorLabel;
+    private javax.swing.JTextField afegirNomConductorText;
     private javax.swing.JLabel afegirNumeroLabel;
     private javax.swing.JTextField afegirNumeroText;
     private javax.swing.JButton afegirVehicleButton;
+    private javax.swing.JLabel conductorLabel;
+    private javax.swing.JLabel editarAnyLabel;
+    private javax.swing.JTextField editarAnyText;
+    private javax.swing.JLabel editarCognomConductorLabel;
+    private javax.swing.JTextField editarCognomConductorText;
+    private javax.swing.JButton editarConductorButton;
+    private javax.swing.JLabel editarEdatConductorLabel;
+    private javax.swing.JTextField editarEdatConductorText;
+    private javax.swing.JLabel editarIdConductorLabel;
+    private javax.swing.JTextField editarIdConductorText;
+    private javax.swing.JLabel editarMarcaLabel;
+    private javax.swing.JTextField editarMarcaText;
+    private javax.swing.JLabel editarModelLabel;
+    private javax.swing.JTextField editarModelText;
+    private javax.swing.JLabel editarNomConductorLabel;
+    private javax.swing.JTextField editarNomConductorText;
+    private javax.swing.JLabel editarNumeroLabel;
+    private javax.swing.JTextField editarNumeroText;
+    private javax.swing.JButton editarVehicleButton;
+    private javax.swing.JButton eliminarConductorButton;
     private javax.swing.JButton eliminarVehicleButton;
+    private javax.swing.JComboBox<String> filtrarCodnuctorCombobox;
     private javax.swing.JComboBox<String> filtrarVehiclesCombobox;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTable jtaulaconductor;
     private javax.swing.JTable jtaulavehicles;
+    private javax.swing.JLabel vehicleLabel;
     // End of variables declaration//GEN-END:variables
 
 

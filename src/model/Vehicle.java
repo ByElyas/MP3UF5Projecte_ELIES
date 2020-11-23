@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author profe
+ * Vehicle
  */
 public class Vehicle implements Comparable<Vehicle> {
     
@@ -66,7 +67,8 @@ public class Vehicle implements Comparable<Vehicle> {
     public int compareTo(Vehicle o) {
         return this._1_numero_Vehicle-o._1_numero_Vehicle;
     }
-        
+       
+    
 
     
 }
