@@ -21,20 +21,21 @@ public class Model {
 //    public static final String table_header[] = {"Marca Vehicle", "Model Vehicle", "Any Vehicle", "Numero Vehicle"};
 //    public static final ArrayList<Vehicle> data = new ArrayList<Vehicle>(); 
     public Model() {
+        //MOGUT AL CONTROLADOR DIRECTE
         //Afegir vehicles
-        data.add(new Vehicle("Mazda", "RX-7 FC", 1989, 6));
-        data.add(new Vehicle("Nissan", "Skyline GTR R32", 1991, 22));
-        data.add(new Vehicle("Toyota", "Corolla Trueno AE86", 1986, 86));
-        data.add(new Vehicle("Nissan", "Silvia S15", 1998, 66));
-        data.add(new Vehicle("Audi", "Quattro Sport", 1988, 15));
-        data.add(new Vehicle("BMW", "M3 GTR", 2005, 19));
+//        data.add(new Vehicle("Mazda", "RX-7 FC", 1989, 6));
+//        data.add(new Vehicle("Nissan", "Skyline GTR R32", 1991, 22));
+//        data.add(new Vehicle("Toyota", "Corolla Trueno AE86", 1986, 86));
+//        data.add(new Vehicle("Nissan", "Silvia S15", 1998, 66));
+//        data.add(new Vehicle("Audi", "Quattro Sport", 1988, 15));
+//        data.add(new Vehicle("BMW", "M3 GTR", 2005, 19));
 
 //        Afegir conductors
-        dataConductor.add(new Conductor("Pepe", "Viyuela", 45, 6589));
-        dataConductor.add(new Conductor("Paul", "Walker", 47, 2254));
-        dataConductor.add(new Conductor("Ian", "Lewis", 24, 222));
-        dataConductor.add(new Conductor("Alex", "Cañizares", 21, 1574));
-        dataConductor.add(new Conductor("Frank", "Williams", 53, 1));
+//        dataConductor.add(new Conductor("Pepe", "Viyuela", 45, 6589));
+//        dataConductor.add(new Conductor("Paul", "Walker", 47, 2254));
+//        dataConductor.add(new Conductor("Ian", "Lewis", 24, 222));
+//        dataConductor.add(new Conductor("Alex", "Cañizares", 21, 1574));
+//        dataConductor.add(new Conductor("Frank", "Williams", 53, 1));
     }
 
     //Vehciles

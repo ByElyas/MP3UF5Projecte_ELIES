@@ -33,7 +33,7 @@ public class Vehicle implements Comparable<Vehicle> {
     }
 
     public void set2_model_Vehicle(String _2_modelVehicle) {
-        this._2_model_Vehicle = _2_model_Vehicle;
+        this._2_model_Vehicle = _2_modelVehicle;
     }
 
     public int get3_any_Vehicle() {

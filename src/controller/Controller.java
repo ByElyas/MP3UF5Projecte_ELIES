@@ -49,6 +49,19 @@ public class Controller {
          * VEHICLE
          */
         
+        //Vehicles per defecte
+        model.insertarVehicle("Mazda", "RX-7 FC", 1989, 6);
+        model.insertarVehicle("Nissan", "Skyline GTR R32", 1991, 22);
+        model.insertarVehicle("Toyota", "Corolla Trueno AE86", 1986, 86);
+        model.insertarVehicle("Nissan", "Silvia S15", 1998, 66);
+                
+        //Conductors per defecte
+        model.insertarConductor("Pepe", "Viyuela", 45, 6589);
+        model.insertarConductor("Paul", "Walker", 47, 2254);
+        model.insertarConductor("Ian", "Lewis", 24, 222);
+        model.insertarConductor("Frank", "Williams", 53, 1);
+        model.insertarConductor("Alex", "Cañizares", 21, 1574);
+        
         //TITOL PANEL VEHICLE
         view.getVehicleLabel().setText("VEHICLES");
 
@@ -192,14 +205,14 @@ public class Controller {
                         tcm.addColumn(tc);
 //                        System.out.println(filaSel);  
                         Vehicle veh = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount() - 1);
-                        tcm.removeColumn(tc);
 //                        System.out.println(veh.toString());
-                        veh.set1_numero_Vehicle(Integer.parseInt(String.valueOf(view.getEditarNumeroText())));
-                        veh.set2_model_Vehicle(String.valueOf(view.getEditarModelText()));
-                        veh.set3_any_Vehicle(Integer.parseInt(String.valueOf(view.getEditarAnyText())));
-                        veh.set4_marca_Vehicle(String.valueOf(view.getEditarMarcaText()));
-                        view.getJTaulaVehicles().setValueAt(veh, filaSel, tcm.getColumnCount()-1);     
+                        veh.set1_numero_Vehicle(Integer.parseInt(view.getEditarNumeroText().getText()));
+                        veh.set2_model_Vehicle(view.getEditarModelText().getText());
+                        veh.set3_any_Vehicle(Integer.parseInt(view.getEditarAnyText().getText()));
+                        veh.set4_marca_Vehicle(view.getEditarMarcaText().getText());
+//                        view.getJTaulaVehicles().setValueAt(veh, filaSel, tcm.getColumnCount()-1);     
                         carregarTaulaVehicle();
+                        tcm.removeColumn(tc);
                         filaSel = -1;
                     } else {
                         System.out.println(filaSel);
