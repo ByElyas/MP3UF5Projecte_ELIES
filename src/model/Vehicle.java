@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.Comparator;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -65,7 +66,9 @@ public class Vehicle implements Comparable<Vehicle> {
 
     @Override
     public int compareTo(Vehicle o) {
-        return this._1_numero_Vehicle-o._1_numero_Vehicle;
+//        return this._1_numero_Vehicle-o._1_numero_Vehicle;
+          return Comparator.comparing(Vehicle::get1_numero_Vehicle).thenComparing(Vehicle::get4_marca_Vehicle)
+                  .compare(this, o);
     }
        
     

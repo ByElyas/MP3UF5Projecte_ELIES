@@ -64,6 +64,12 @@ public class Model {
 
     class VehicleOrdenatMarca implements Comparator<Vehicle> {
 
+//        @Override
+//        public int compareTo(Vehicle o) {
+//            return Comparator.comparing(Vehicle::get4_marca_Vehicle).thenComparing(Vehicle::get1_numero_Vehicle)
+//                  .compare(o, o);
+//        }
+
         @Override
         public int compare(Vehicle o1, Vehicle o2) {
             return o1.get4_marca_Vehicle().compareTo(o2.get4_marca_Vehicle());
@@ -91,9 +97,6 @@ public class Model {
         dataConductor.remove(algo);
     }
 
-    public void actualitzarConductor(String nom, String cognom, int edat, int id) {
-        
-    }
 }
 
 class ConductorOrdenatNom implements Comparator<Conductor> {

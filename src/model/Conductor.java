@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Comparator;
+
 /**
  *
  * @author eliesfatsini
@@ -32,7 +34,7 @@ public class Conductor implements Comparable<Conductor> {
     }
 
     public void set2_cognom_Conductor(String _2_cognomConductor) {
-        this._2_cognom_Conductor = _2_cognom_Conductor;
+        this._2_cognom_Conductor = _2_cognomConductor;
     }
 
     public int get3_edat_Conductor() {
@@ -60,7 +62,9 @@ public class Conductor implements Comparable<Conductor> {
 
     @Override
     public int compareTo(Conductor o) {
-        return this._1_id_Conductor - o._1_id_Conductor;
+//        return this._1_id_Conductor - o._1_id_Conductor;
+          return Comparator.comparing(Conductor::get1_id_Conductor).thenComparing(Conductor::get4_nom_Conductor)
+                  .compare(this, o);
     }
 
 }

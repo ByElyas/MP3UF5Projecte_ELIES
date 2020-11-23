@@ -62,6 +62,9 @@ public class Controller {
         model.insertarConductor("Frank", "Williams", 53, 1);
         model.insertarConductor("Alex", "Cañizares", 21, 1574);
         
+        
+        ///////////////////////////
+        
         //TITOL PANEL VEHICLE
         view.getVehicleLabel().setText("VEHICLES");
 
@@ -298,9 +301,13 @@ public class Controller {
 //                        System.out.println(filaSel);  
                         Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(filaSelCond, tcm.getColumnCount() - 1);
 //                        System.out.println(veh.toString());
+                        cond.set1_id_Conductor(Integer.parseInt(view.getEditarIdConductorText().getText()));
+                        cond.set2_cognom_Conductor(view.getEditarCognomConductorText().getText());
+                        cond.set3_edat_Conductor(Integer.parseInt(view.getEditarEdatConductorText().getText()));
+                        cond.set4_nom_Conductor(view.getEditarNomConductorText().getText());
                         tcm.removeColumn(tc);
                         carregarTaulaConductor();
-                        filaSel = -1;
+                        filaSelCond = -1;
                     } else {
                         System.out.println(filaSelCond);
                         JOptionPane.showMessageDialog(view, "Has de seleccionar una fila per a editarla!");
