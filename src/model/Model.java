@@ -72,7 +72,13 @@ public class Model {
 
         @Override
         public int compare(Vehicle o1, Vehicle o2) {
-            return o1.get4_marca_Vehicle().compareTo(o2.get4_marca_Vehicle());
+//            return o1.get4_marca_Vehicle().compareTo(o2.get4_marca_Vehicle());
+            int p;
+            p = o1.get4_marca_Vehicle().compareTo(o2.get4_marca_Vehicle());
+            if (p != 0) {
+                return p;
+            }
+            return o1.get2_model_Vehicle().compareTo(o2.get2_model_Vehicle());
         }
 
     }

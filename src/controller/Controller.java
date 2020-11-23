@@ -51,6 +51,7 @@ public class Controller {
         
         //Vehicles per defecte
         model.insertarVehicle("Mazda", "RX-7 FC", 1989, 6);
+        model.insertarVehicle("Unity", "RX-7 FC", 1986, 8);
         model.insertarVehicle("Nissan", "Skyline GTR R32", 1991, 22);
         model.insertarVehicle("Toyota", "Corolla Trueno AE86", 1986, 86);
         model.insertarVehicle("Nissan", "Silvia S15", 1998, 66);
@@ -159,6 +160,10 @@ public class Controller {
     public void carregarTaulaVehicle() {
         tc = Utils.<Vehicle>loadTable(model.getData(), view.getJTaulaVehicles(), Vehicle.class, true, true);
     }
+    public void carregarTaulaVehicleOrdenada() {
+        model.getDataOrd().addAll(model.getData());
+        tc = Utils.<Vehicle>loadTable(model.getDataOrd(), view.getJTaulaVehicles(), Vehicle.class, true, true);
+    }
     
     public void carregarTaulaConductor() {
         tc = Utils.<Conductor>loadTable(model.getDataConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
@@ -255,13 +260,13 @@ public class Controller {
                 }
         );
 
+        //FILTRE 
         view.getFiltrarVehiclesCombobox().addItemListener(e -> {
                     if (view.getFiltrarVehiclesCombobox().getSelectedIndex() == 0) {
                         carregarTaulaVehicle();
                     }
                     if (view.getFiltrarVehiclesCombobox().getSelectedIndex() == 1) {
-                        model.getDataOrd().addAll(model.getData());
-                        tc = Utils.<Vehicle>loadTable(model.getDataOrd(), view.getJTaulaVehicles(), Vehicle.class, true, true);
+                        carregarTaulaVehicleOrdenada();
                     }
                 }
         );
