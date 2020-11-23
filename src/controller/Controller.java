@@ -179,6 +179,19 @@ public class Controller {
     public void carregarTaulaConductor() {
         tc = Utils.<Conductor>loadTable(model.getDataConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
     }
+    
+    public void carregarTaulaConductorOrdenada() {
+        model.getDataOrdConductor().addAll(model.getDataConductor());
+        tc = Utils.<Conductor>loadTable(model.getDataOrdConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
+    }
+    
+    public void carregarTaulaConductorActual() {
+        if (colConductorActual==0) {
+            carregarTaulaConductor();
+        } else {
+            carregarTaulaConductorOrdenada();
+        }
+    }
 
     private void controlador() {
 
@@ -191,7 +204,7 @@ public class Controller {
         //TAULA
         //Carregar les dades localitzades a Model.java, tambè servirà per al insertar dades      
         carregarTaulaVehicleActual();
-        carregarTaulaConductor();
+        carregarTaulaConductorActual();
 
         //ACCIONS DE CRUD AQUI
         
@@ -283,6 +296,13 @@ public class Controller {
                     }
                 }
         );
+         
+        
+        
+        
+        
+        
+        
         
         
         
@@ -324,7 +344,7 @@ public class Controller {
                         cond.set3_edat_Conductor(Integer.parseInt(view.getEditarEdatConductorText().getText()));
                         cond.set4_nom_Conductor(view.getEditarNomConductorText().getText());
                         tcm.removeColumn(tc);
-                        carregarTaulaConductor();
+                        carregarTaulaConductorActual();
                         filaSelCond = -1;
                     } else {
                         System.out.println(filaSelCond);
@@ -340,7 +360,7 @@ public class Controller {
                             Integer.parseInt(view.getAfegirEdatConductorText().getText()),
                             Integer.parseInt(view.getAfegirIdConductorText().getText())
                     );
-                    carregarTaulaConductor();
+                    carregarTaulaConductorActual();
                 }
         );
 
@@ -355,7 +375,7 @@ public class Controller {
 //                        System.out.println(veh.toString());
                         tcm.removeColumn(tc);
                         model.eliminarConductor(cond);
-                        carregarTaulaConductor();
+                        carregarTaulaConductorActual();
                         filaSelCond = -1;
                     } else {
                         System.out.println(filaSelCond);
@@ -365,12 +385,13 @@ public class Controller {
         );
 
         view.getFiltrarConductorCombobox().addItemListener(e -> {
-                    if (view.getFiltrarConductorCombobox().getSelectedIndex() == 0) {                        
-                        carregarTaulaConductor();
+                    if (view.getFiltrarConductorCombobox().getSelectedIndex() == 0) {
+                        colConductorActual=0;
+                        carregarTaulaConductorActual();
                     }
                     if (view.getFiltrarConductorCombobox().getSelectedIndex() == 1) {
-                        model.getDataOrdConductor().addAll(model.getDataConductor());
-                        tc = Utils.<Conductor>loadTable(model.getDataOrdConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
+                        colConductorActual=1;
+                        carregarTaulaConductorActual();
                     }
                 }
         );

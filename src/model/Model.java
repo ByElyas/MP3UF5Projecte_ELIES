@@ -69,7 +69,6 @@ public class Model {
 //            return Comparator.comparing(Vehicle::get4_marca_Vehicle).thenComparing(Vehicle::get1_numero_Vehicle)
 //                  .compare(o, o);
 //        }
-
         @Override
         public int compare(Vehicle o1, Vehicle o2) {
 //            return o1.get4_marca_Vehicle().compareTo(o2.get4_marca_Vehicle());
@@ -109,7 +108,13 @@ class ConductorOrdenatNom implements Comparator<Conductor> {
 
     @Override
     public int compare(Conductor o1, Conductor o2) {
-        return o1.get4_nom_Conductor().compareTo(o2.get4_nom_Conductor());
+        // return o1.get4_nom_Conductor().compareTo(o2.get4_nom_Conductor());
+        int p;
+        p = o1.get4_nom_Conductor().compareTo(o2.get4_nom_Conductor());
+        if (p != 0) {
+            return p;
+        }
+        return o1.get2_cognom_Conductor().compareTo(o2.get2_cognom_Conductor());
     }
 
 }
