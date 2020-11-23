@@ -32,6 +32,8 @@ public class Controller {
     private static Model model;
     private static View view;
 
+    private int colVehicleActual = 0;
+    private int colConductorActual = 0;
     private int filaSel = -1;
     private int filaSelCond = -1;
     private TableColumn tc;
@@ -165,6 +167,15 @@ public class Controller {
         tc = Utils.<Vehicle>loadTable(model.getDataOrd(), view.getJTaulaVehicles(), Vehicle.class, true, true);
     }
     
+    public void carregarTaulaVehicleActual(){
+        if (colVehicleActual==0) {
+            carregarTaulaVehicle();
+        } else {
+            carregarTaulaVehicleOrdenada();
+        }
+    }
+    
+    
     public void carregarTaulaConductor() {
         tc = Utils.<Conductor>loadTable(model.getDataConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
     }
@@ -179,7 +190,7 @@ public class Controller {
 
         //TAULA
         //Carregar les dades localitzades a Model.java, tambè servirà per al insertar dades      
-        carregarTaulaVehicle();
+        carregarTaulaVehicleActual();
         carregarTaulaConductor();
 
         //ACCIONS DE CRUD AQUI
@@ -219,7 +230,7 @@ public class Controller {
                         veh.set3_any_Vehicle(Integer.parseInt(view.getEditarAnyText().getText()));
                         veh.set4_marca_Vehicle(view.getEditarMarcaText().getText());
 //                        view.getJTaulaVehicles().setValueAt(veh, filaSel, tcm.getColumnCount()-1);     
-                        carregarTaulaVehicle();
+                        carregarTaulaVehicleActual();
                         tcm.removeColumn(tc);
                         filaSel = -1;
                     } else {
@@ -236,7 +247,7 @@ public class Controller {
                             Integer.parseInt(view.getAfegirAnyText().getText()),
                             Integer.parseInt(view.getAfegirNumeroText().getText())
                     );
-                    carregarTaulaVehicle();
+                    carregarTaulaVehicleActual();
                 }
         );
 
@@ -251,7 +262,7 @@ public class Controller {
 //                        System.out.println(veh.toString());
                         tcm.removeColumn(tc);
                         model.eliminarVehicle(veh);
-                        carregarTaulaVehicle();
+                        carregarTaulaVehicleActual();
                         filaSel = -1;
                     } else {
                         System.out.println(filaSel);
@@ -263,10 +274,12 @@ public class Controller {
         //FILTRE 
         view.getFiltrarVehiclesCombobox().addItemListener(e -> {
                     if (view.getFiltrarVehiclesCombobox().getSelectedIndex() == 0) {
-                        carregarTaulaVehicle();
+                        colVehicleActual=0;
+                        carregarTaulaVehicleActual();
                     }
                     if (view.getFiltrarVehiclesCombobox().getSelectedIndex() == 1) {
-                        carregarTaulaVehicleOrdenada();
+                        colVehicleActual=1;
+                        carregarTaulaVehicleActual();
                     }
                 }
         );
@@ -352,7 +365,7 @@ public class Controller {
         );
 
         view.getFiltrarConductorCombobox().addItemListener(e -> {
-                    if (view.getFiltrarConductorCombobox().getSelectedIndex() == 0) {
+                    if (view.getFiltrarConductorCombobox().getSelectedIndex() == 0) {                        
                         carregarTaulaConductor();
                     }
                     if (view.getFiltrarConductorCombobox().getSelectedIndex() == 1) {
