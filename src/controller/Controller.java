@@ -12,6 +12,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import static java.lang.System.console;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -32,6 +33,7 @@ public class Controller {
     private static Model model;
     private static View view;
 
+//    private int comboboxActualCond = 0;
     private int colVehicleActual = 0;
     private int colConductorActual = 0;
     private int filaSel = -1;
@@ -50,24 +52,23 @@ public class Controller {
         /**
          * VEHICLE
          */
-        
         //Vehicles per defecte
         model.insertarVehicle("Mazda", "RX-7 FC", 1989, 6);
         model.insertarVehicle("Unity", "RX-7 FC", 1986, 8);
         model.insertarVehicle("Nissan", "Skyline GTR R32", 1991, 22);
         model.insertarVehicle("Toyota", "Corolla Trueno AE86", 1986, 86);
         model.insertarVehicle("Nissan", "Silvia S15", 1998, 66);
-                
+//        model.insertarVehicle("Nissan", "Silvia S15", 1998, 66, 2254, 6587);
+//        ids_cond.add(222, 1);
+//        model.insertarVehicle("Nissan", "Silvia S15", 1998, 66, ids_cond);
+
         //Conductors per defecte
-        model.insertarConductor("Pepe", "Viyuela", 45, 6589);
-        model.insertarConductor("Paul", "Walker", 47, 2254);
-        model.insertarConductor("Ian", "Lewis", 24, 222);
-        model.insertarConductor("Frank", "Williams", 53, 1);
-        model.insertarConductor("Alex", "Cañizares", 21, 1574);
-        
-        
+//        model.insertarConductor("Pepe", "Viyuela", 45, 6589);
+//        model.insertarConductor("Paul", "Walker", 47, 2254);
+//        model.insertarConductor("Ian", "Mardhaveer", 24, 222);
+//        model.insertarConductor("Alex", "Cañizares", 21, 1574);
+//        model.insertarConductor("Frank", "Williams", 21, 1574);
         ///////////////////////////
-        
         //TITOL PANEL VEHICLE
         view.getVehicleLabel().setText("VEHICLES");
 
@@ -95,7 +96,6 @@ public class Controller {
         //FORMULARI ELIMINAR - TEXT DEFECTE
         view.getEliminarVehicleButton().setText("Eliminar fila!");
 
-
         //FORMULARI -EDITAR
         view.getEditarVehicleButton().setText("Editar!");
         view.getEditarAnyLabel().setText("Any Vehicle");
@@ -108,11 +108,10 @@ public class Controller {
         view.getEditarNumeroText().setText("999");
 //        tcmE.removeColumn(tc);
 
-
         /**
          * Conductor
          */
-                //TITOL PANEL VEHICLE
+        //TITOL PANEL VEHICLE
         view.getConductorLabel().setText("CONDUCTORS");
 
         //CAIXES DE TEXT - FORMULARI
@@ -139,7 +138,6 @@ public class Controller {
         //FORMULARI ELIMINAR - TEXT DEFECTE
         view.getEliminarConductorButton().setText("Eliminar fila!");
 
-
         view.getEditarConductorButton().setText("Editar!");
         view.getEditarNomConductorLabel().setText("Nom Conductor");
         view.getEditarEdatConductorText().setText("999");
@@ -150,41 +148,61 @@ public class Controller {
         view.getEditarIdConductorLabel().setText("ID Conductor");
         view.getEditarIdConductorText().setText("99999");
 //        tcmE.removeColumn(tc);
-        
+        view.getNumVehicleConductorLabel().setText("Numero del vehicle");
+
+    }
+
+    public void defecteTextDinamic() {
+        view.getNumVehicleConductorCombobox().removeAllItems();
+//        Combobox per a elegir vehicle per al conductor
+//        System.out.println(view.getJTaulaConductor().getColumnCount());
+        for (int i = 0; i <= view.getJTaulaVehicles().getColumnCount(); i++) {
+            TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
+            int prova = (int) view.getJTaulaVehicles().getValueAt(i, 0);
+            view.getNumVehicleConductorCombobox().addItem(String.valueOf(prova));
+//            view.getNumVehicleConductorCombobox().addItem(String.valueOf(i));
+        }
+
     }
 
     public void carregarTaulaVehicle() {
         tc = Utils.<Vehicle>loadTable(model.getData(), view.getJTaulaVehicles(), Vehicle.class, true, true);
+        defecteTextDinamic();
     }
+
     public void carregarTaulaVehicleOrdenada() {
         model.getDataOrd().addAll(model.getData());
         tc = Utils.<Vehicle>loadTable(model.getDataOrd(), view.getJTaulaVehicles(), Vehicle.class, true, true);
+        defecteTextDinamic();
     }
-    
-    public void carregarTaulaVehicleActual(){
-        if (colVehicleActual==0) {
+
+    public void carregarTaulaVehicleActual() {
+        if (colVehicleActual == 0) {
             carregarTaulaVehicle();
+
         } else {
             carregarTaulaVehicleOrdenada();
         }
+
     }
-    
-    
+
     public void carregarTaulaConductor() {
         tc = Utils.<Conductor>loadTable(model.getDataConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
     }
-    
+
     public void carregarTaulaConductorOrdenada() {
         model.getDataOrdConductor().addAll(model.getDataConductor());
         tc = Utils.<Conductor>loadTable(model.getDataOrdConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
     }
-    
+
     public void carregarTaulaConductorActual() {
-        if (colConductorActual==0) {
+
+        if (colConductorActual == 0) {
             carregarTaulaConductor();
         } else {
             carregarTaulaConductorOrdenada();
         }
+        defecteTextDinamic();
     }
 
     private void controlador() {
@@ -201,7 +219,6 @@ public class Controller {
         carregarTaulaConductorActual();
 
         //ACCIONS DE CRUD AQUI
-        
         //VEHICLE
         //editarVehicle
         //Afegir text dinamic a l'apartat de edit
@@ -220,79 +237,70 @@ public class Controller {
                 view.getEditarModelText().setText(vehE.get2_model_Vehicle());
                 view.getEditarMarcaText().setText(vehE.get4_marca_Vehicle());
                 tcmE.removeColumn(tc);
-    
+
             }
         }
         );
         view.getEditarVehicleButton().addActionListener(e -> {
-                    if (filaSel != -1) {
-                        TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
-                        tcm.addColumn(tc);  
-                        Vehicle veh = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount() - 1);
-                        veh.set1_numero_Vehicle(Integer.parseInt(view.getEditarNumeroText().getText()));
-                        veh.set2_model_Vehicle(view.getEditarModelText().getText());
-                        veh.set3_any_Vehicle(Integer.parseInt(view.getEditarAnyText().getText()));
-                        veh.set4_marca_Vehicle(view.getEditarMarcaText().getText());   
-                        tcm.removeColumn(tc);
-                        carregarTaulaVehicleActual();
-                        filaSel = -1;
-                    } else {
-                        System.out.println(filaSel);
-                        JOptionPane.showMessageDialog(view, "Has de seleccionar una fila per a editarla");
-                    }
-                }
+            if (filaSel != -1) {
+                TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
+                tcm.addColumn(tc);
+                Vehicle veh = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount() - 1);
+                veh.set1_numero_Vehicle(Integer.parseInt(view.getEditarNumeroText().getText()));
+                veh.set2_model_Vehicle(view.getEditarModelText().getText());
+                veh.set3_any_Vehicle(Integer.parseInt(view.getEditarAnyText().getText()));
+                veh.set4_marca_Vehicle(view.getEditarMarcaText().getText());
+                tcm.removeColumn(tc);
+                carregarTaulaVehicleActual();
+                filaSel = -1;
+            } else {
+                System.out.println(filaSel);
+                JOptionPane.showMessageDialog(view, "Has de seleccionar una fila per a editarla");
+            }
+        }
         );
 
         //afegirVehicle
         view.getAfegirVehicleButton().addActionListener(e -> {
-                    model.insertarVehicle(view.getAfegirMarcaText().getText(),
-                            view.getAfegirModelText().getText(),
-                            Integer.parseInt(view.getAfegirAnyText().getText()),
-                            Integer.parseInt(view.getAfegirNumeroText().getText())
-                    );
-                    carregarTaulaVehicleActual();
-                }
+            model.insertarVehicle(view.getAfegirMarcaText().getText(),
+                    view.getAfegirModelText().getText(),
+                    Integer.parseInt(view.getAfegirAnyText().getText()),
+                    Integer.parseInt(view.getAfegirNumeroText().getText())
+            );
+            carregarTaulaVehicleActual();
+        }
         );
 
         //eliminarVehicle
         view.getEliminarVehicleButton().addActionListener(e -> {
-                    if (filaSel != -1) {
-                        TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
-                        tcm.addColumn(tc);  
-                        Vehicle veh = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount() - 1);
-                        tcm.removeColumn(tc);
-                        model.eliminarVehicle(veh);
-                        carregarTaulaVehicleActual();
-                        filaSel = -1;
-                    } else {
-                        System.out.println(filaSel);
-                        JOptionPane.showMessageDialog(view, "Has de seleccionar una fila per a borrarla!");
-                    }
-                }
+            if (filaSel != -1) {
+                TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
+                tcm.addColumn(tc);
+                Vehicle veh = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount() - 1);
+                tcm.removeColumn(tc);
+                model.eliminarVehicle(veh);
+                carregarTaulaVehicleActual();
+                filaSel = -1;
+            } else {
+                System.out.println(filaSel);
+                JOptionPane.showMessageDialog(view, "Has de seleccionar una fila per a borrarla!");
+            }
+        }
         );
 
         //FILTRE 
         view.getFiltrarVehiclesCombobox().addItemListener(e -> {
-                    if (view.getFiltrarVehiclesCombobox().getSelectedIndex() == 0) {
-                        colVehicleActual=0;
-                        carregarTaulaVehicleActual();
-                    }
-                    if (view.getFiltrarVehiclesCombobox().getSelectedIndex() == 1) {
-                        colVehicleActual=1;
-                        carregarTaulaVehicleActual();
-                    }
-                }
+            if (view.getFiltrarVehiclesCombobox().getSelectedIndex() == 0) {
+                colVehicleActual = 0;
+                carregarTaulaVehicleActual();
+            }
+            if (view.getFiltrarVehiclesCombobox().getSelectedIndex() == 1) {
+                colVehicleActual = 1;
+                carregarTaulaVehicleActual();
+            }
+        }
         );
-         
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         ////
         //CONDUCTOR
         ////
@@ -313,79 +321,85 @@ public class Controller {
                 view.getEditarCognomConductorText().setText(condE.get2_cognom_Conductor());
                 view.getEditarNomConductorText().setText(condE.get4_nom_Conductor());
                 tcmCondE.removeColumn(tc);
-                
-                
+
             }
         }
         );
         view.getEditarConductorButton().addActionListener(e -> {
 //                    System.out.println(filaSel);
-                    if (filaSelCond != -1) {
-                        TableColumnModel tcm = view.getJTaulaConductor().getColumnModel();
-                        tcm.addColumn(tc);
+            if (filaSelCond != -1) {
+                TableColumnModel tcm = view.getJTaulaConductor().getColumnModel();
+                tcm.addColumn(tc);
 //                        System.out.println(filaSel);  
-                        Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(filaSelCond, tcm.getColumnCount() - 1);
+                Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(filaSelCond, tcm.getColumnCount() - 1);
 //                        System.out.println(veh.toString());
-                        cond.set1_id_Conductor(Integer.parseInt(view.getEditarIdConductorText().getText()));
-                        cond.set2_cognom_Conductor(view.getEditarCognomConductorText().getText());
-                        cond.set3_edat_Conductor(Integer.parseInt(view.getEditarEdatConductorText().getText()));
-                        cond.set4_nom_Conductor(view.getEditarNomConductorText().getText());
-                        tcm.removeColumn(tc);
-                        carregarTaulaConductorActual();
-                        filaSelCond = -1;
-                    } else {
-                        System.out.println(filaSelCond);
-                        JOptionPane.showMessageDialog(view, "Has de seleccionar una fila per a editarla!");
-                    }
-                }
+                cond.set1_id_Conductor(Integer.parseInt(view.getEditarIdConductorText().getText()));
+                cond.set2_cognom_Conductor(view.getEditarCognomConductorText().getText());
+                cond.set3_edat_Conductor(Integer.parseInt(view.getEditarEdatConductorText().getText()));
+                cond.set4_nom_Conductor(view.getEditarNomConductorText().getText());
+                tcm.removeColumn(tc);
+                carregarTaulaConductorActual();
+                filaSelCond = -1;
+            } else {
+                System.out.println(filaSelCond);
+                JOptionPane.showMessageDialog(view, "Has de seleccionar una fila per a editarla!");
+            }
+        }
         );
 
         //afegirConductor
         view.getAfegirConductorButton().addActionListener(e -> {
-                    model.insertarConductor(view.getAfegirNomConductorText().getText(),
-                            view.getAfegirCognomConductorText().getText(),
-                            Integer.parseInt(view.getAfegirEdatConductorText().getText()),
-                            Integer.parseInt(view.getAfegirIdConductorText().getText())
-                    );
-                    carregarTaulaConductorActual();
-                }
-        );
+            TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
+            Vehicle veh = (Vehicle) view.getJTaulaVehicles().getValueAt(view.getNumVehicleConductorCombobox().getSelectedIndex(),
+                    tcm.getColumnCount() - 1);
+//                Vehicle veh = new Vehicle("Opel", "Corsa", 2004, 154);
 
+            model.insertarConductor(view.getAfegirNomConductorText().getText(),
+                    view.getAfegirCognomConductorText().getText(),
+                    Integer.parseInt(view.getAfegirEdatConductorText().getText()),
+                    Integer.parseInt(view.getAfegirIdConductorText().getText()),
+                    veh
+            );
+            carregarTaulaConductorActual();
+        }
+        );
         //eliminarConductor
         view.getEliminarConductorButton().addActionListener(e -> {
 //                    System.out.println(filaSel);
-                    if (filaSelCond != -1) {
-                        TableColumnModel tcm = view.getJTaulaConductor().getColumnModel();
-                        tcm.addColumn(tc);
+            if (filaSelCond != -1) {
+                TableColumnModel tcm = view.getJTaulaConductor().getColumnModel();
+                tcm.addColumn(tc);
 //                        System.out.println(filaSel);  
-                        Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(filaSelCond, tcm.getColumnCount() - 1);
+                Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(filaSelCond, tcm.getColumnCount() - 1);
 //                        System.out.println(veh.toString());
-                        tcm.removeColumn(tc);
-                        model.eliminarConductor(cond);
-                        carregarTaulaConductorActual();
-                        filaSelCond = -1;
-                    } else {
-                        System.out.println(filaSelCond);
-                        JOptionPane.showMessageDialog(view, "Has de seleccionar una fila per a borrarla!");
-                    }
-                }
+                tcm.removeColumn(tc);
+                model.eliminarConductor(cond);
+                carregarTaulaConductorActual();
+                filaSelCond = -1;
+            } else {
+                System.out.println(filaSelCond);
+                JOptionPane.showMessageDialog(view, "Has de seleccionar una fila per a borrarla!");
+            }
+        }
         );
 
         view.getFiltrarConductorCombobox().addItemListener(e -> {
-                    if (view.getFiltrarConductorCombobox().getSelectedIndex() == 0) {
-                        colConductorActual=0;
-                        carregarTaulaConductorActual();
-                    }
-                    if (view.getFiltrarConductorCombobox().getSelectedIndex() == 1) {
-                        colConductorActual=1;
-                        carregarTaulaConductorActual();
-                    }
-                }
+            if (view.getFiltrarConductorCombobox().getSelectedIndex() == 0) {
+                colConductorActual = 0;
+                carregarTaulaConductorActual();
+            }
+            if (view.getFiltrarConductorCombobox().getSelectedIndex() == 1) {
+                colConductorActual = 1;
+                carregarTaulaConductorActual();
+            }
+        }
         );
-    }
 
-    
-    
+//        view.getNumVehicleConductorCombobox().addItemListener(e -> {
+//            comboboxActualCond =;
+//        });
+
+    }
 
     //Per implementar els ActionEvents dels components de la vista (útil per 
     //exemple, per controlar l'acció que s'executa quan fem clic a un botó tant 

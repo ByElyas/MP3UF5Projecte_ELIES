@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.Collection;
 import java.util.Comparator;
 
 /**
@@ -15,12 +16,24 @@ import java.util.Comparator;
  * Conductor
  */
 public class Conductor implements Comparable<Conductor> {
-
+    
+    private Vehicle _5_vehicle_Conductor;
     private String _4_nom_Conductor;
     private String _2_cognom_Conductor;
     private int _3_edat_Conductor;
     private int _1_id_Conductor;
 
+    public Vehicle get5_vehicle_Conductor() {
+        return _5_vehicle_Conductor;
+    }
+
+    public void set5_vehicle_Conductor(Vehicle _5_vehicle_Conductor) {
+        this._5_vehicle_Conductor = _5_vehicle_Conductor;
+    }
+
+    
+    
+    
     public String get4_nom_Conductor() {
         return _4_nom_Conductor;
     }
@@ -53,7 +66,10 @@ public class Conductor implements Comparable<Conductor> {
         this._1_id_Conductor = _1_idConductor;
     }
 
-    public Conductor(String _4_nomConductor, String _2_cognomConductor, int _3_edatConductor, int _1_idConductor) {
+    public Conductor(String _4_nomConductor, String _2_cognomConductor, int _3_edatConductor, int _1_idConductor,
+            Vehicle _5_vehicle_Conductor) {
+        
+        this._5_vehicle_Conductor = _5_vehicle_Conductor;
         this._4_nom_Conductor = _4_nomConductor;
         this._2_cognom_Conductor = _2_cognomConductor;
         this._3_edat_Conductor = _3_edatConductor;

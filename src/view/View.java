@@ -94,6 +94,8 @@ public class View extends javax.swing.JFrame {
         eliminarConductorButton = new javax.swing.JButton();
         editarConductorButton = new javax.swing.JButton();
         afegirConductorButton = new javax.swing.JButton();
+        numVehicleConductorLabel = new javax.swing.JLabel();
+        numVehicleConductorCombobox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Llistat Vehicles");
@@ -352,6 +354,10 @@ public class View extends javax.swing.JFrame {
 
         afegirConductorButton.setText("jButton1");
 
+        numVehicleConductorLabel.setText("jLabel1");
+
+        numVehicleConductorCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -386,7 +392,11 @@ public class View extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(afegirIdConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
-                                .addComponent(afegirConductorButton)))
+                                .addComponent(afegirConductorButton))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(numVehicleConductorLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(numVehicleConductorCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(45, 45, 45)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -427,6 +437,7 @@ public class View extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(afegirNomConductorLabel)
@@ -443,8 +454,11 @@ public class View extends javax.swing.JFrame {
                                             .addComponent(afegirIdConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(1, 1, 1)
-                                        .addComponent(afegirConductorButton))))
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(afegirConductorButton)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(numVehicleConductorLabel)
+                                    .addComponent(numVehicleConductorCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -463,7 +477,7 @@ public class View extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(editarIdConductorLabel)
                                 .addComponent(editarIdConductorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(294, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -739,8 +753,14 @@ public class View extends javax.swing.JFrame {
     public JButton getAfegirConductorButton() {
         return afegirConductorButton;
     }
-    
-    
+
+    public JComboBox<String> getNumVehicleConductorCombobox() {
+        return numVehicleConductorCombobox;
+    }
+
+    public JLabel getNumVehicleConductorLabel() {
+        return numVehicleConductorLabel;
+    }
     
 
 
@@ -794,6 +814,8 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jtaulaconductor;
     private javax.swing.JTable jtaulavehicles;
+    private javax.swing.JComboBox<String> numVehicleConductorCombobox;
+    private javax.swing.JLabel numVehicleConductorLabel;
     private javax.swing.JLabel vehicleLabel;
     // End of variables declaration//GEN-END:variables
 

@@ -38,6 +38,7 @@ public class Model {
 //        dataConductor.add(new Conductor("Frank", "Williams", 53, 1));
     }
 
+
     //Vehciles
     private Collection<Vehicle> data = new TreeSet<>();
     private Collection<Vehicle> dataOrd = new TreeSet<>(new VehicleOrdenatMarca());
@@ -74,7 +75,6 @@ public class Model {
             }
             return o1.get2_model_Vehicle().compareTo(o2.get2_model_Vehicle());
         }
-
     }
 
     //Conductor
@@ -89,13 +89,14 @@ public class Model {
         return dataOrdConductor;
     }
 
-    public void insertarConductor(String nom, String cognom, int edat, int id) {
-        dataConductor.add(new Conductor(nom, cognom, edat, id));
+    public void insertarConductor(String nom, String cognom, int edat, int id, Vehicle vehicle_Conductor) {
+        dataConductor.add(new Conductor(nom, cognom, edat, id, vehicle_Conductor));
     }
 
     public void eliminarConductor(Conductor algo) {
         dataConductor.remove(algo);
     }
+      
 
 }
 
