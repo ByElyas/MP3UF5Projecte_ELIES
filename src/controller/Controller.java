@@ -95,14 +95,8 @@ public class Controller {
         //FORMULARI ELIMINAR - TEXT DEFECTE
         view.getEliminarVehicleButton().setText("Eliminar fila!");
 
-        //SELECCIONAR FILA ACTUAL   (potser no tindria que anar a text default, pero ho necesssito
-        //per a posar les dades a els camps de text i estess coses
+
         //FORMULARI -EDITAR
-//        TableColumnModel tcmE = view.getJTaulaVehicles().getColumnModel();
-//        tcmE.addColumn(tc);
-////      System.out.println(filaSel);  
-//        Vehicle veh=(Vehicle)view.getJTaulaVehicles().getValueAt(filaSel, tcmE.getColumnCount()-1);
-////      System.out.println(veh.toString());
         view.getEditarVehicleButton().setText("Editar!");
         view.getEditarAnyLabel().setText("Any Vehicle");
         view.getEditarAnyText().setText("9999");
@@ -231,20 +225,16 @@ public class Controller {
         }
         );
         view.getEditarVehicleButton().addActionListener(e -> {
-//                    System.out.println(filaSel);
                     if (filaSel != -1) {
                         TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
-                        tcm.addColumn(tc);
-//                        System.out.println(filaSel);  
+                        tcm.addColumn(tc);  
                         Vehicle veh = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount() - 1);
-//                        System.out.println(veh.toString());
                         veh.set1_numero_Vehicle(Integer.parseInt(view.getEditarNumeroText().getText()));
                         veh.set2_model_Vehicle(view.getEditarModelText().getText());
                         veh.set3_any_Vehicle(Integer.parseInt(view.getEditarAnyText().getText()));
-                        veh.set4_marca_Vehicle(view.getEditarMarcaText().getText());
-//                        view.getJTaulaVehicles().setValueAt(veh, filaSel, tcm.getColumnCount()-1);     
-                        carregarTaulaVehicleActual();
+                        veh.set4_marca_Vehicle(view.getEditarMarcaText().getText());   
                         tcm.removeColumn(tc);
+                        carregarTaulaVehicleActual();
                         filaSel = -1;
                     } else {
                         System.out.println(filaSel);
@@ -266,13 +256,10 @@ public class Controller {
 
         //eliminarVehicle
         view.getEliminarVehicleButton().addActionListener(e -> {
-//                    System.out.println(filaSel);
                     if (filaSel != -1) {
                         TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
-                        tcm.addColumn(tc);
-//                        System.out.println(filaSel);  
+                        tcm.addColumn(tc);  
                         Vehicle veh = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount() - 1);
-//                        System.out.println(veh.toString());
                         tcm.removeColumn(tc);
                         model.eliminarVehicle(veh);
                         carregarTaulaVehicleActual();
