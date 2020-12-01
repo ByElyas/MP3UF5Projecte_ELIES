@@ -40,7 +40,7 @@ public class Controller {
     private int filaSel = -1;
     private int filaSelCond = -1;
     private TableColumn tc;
-    private TableColumn tcE;
+//    private TableColumn tcE;
     
     public Controller(Model m, View v) {
         view = v;
@@ -151,43 +151,42 @@ public class Controller {
 //        tcmE.removeColumn(tc);
         view.getNumVehicleConductorLabel().setText("Numero del vehicle");
         
-    }
-    
-    public void defecteTextDinamic() {
+        
+        
+        
+                //Combobox per a elegir vehicle per als conductors nous               
         view.getNumVehicleConductorCombobox().removeAllItems();
 //        Combobox per a elegir vehicle per al conductor
 //        System.out.println(view.getJTaulaConductor().getColumnCount());
-        for (int i = 0; i <= view.getJTaulaVehicles().getColumnCount(); i++) {
-            TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
-            int prova = (int) view.getJTaulaVehicles().getValueAt(i, 0);
-            view.getNumVehicleConductorCombobox().addItem(String.valueOf(prova));
-//            view.getNumVehicleConductorCombobox().addItem(String.valueOf(i));
-        }
+        //Utils.<Vehicle>loadCombo(model.getData(), view.getNumVehicleConductorCombobox());   
+        Utils.<Vehicle>loadCombo(model.getData(), view.getNumVehicleConductorCombobox());
         
     }
     
+//    public void defecteTextDinamic() {
+//     
+//    }
+    
     public void carregarTaulaVehicle() {
+        model.getData().addAll(model.getDataOrd());
         tc = Utils.<Vehicle>loadTable(model.getData(), view.getJTaulaVehicles(), Vehicle.class, true, true);
-        defecteTextDinamic();
     }
     
     public void carregarTaulaVehicleOrdenada() {
         model.getDataOrd().addAll(model.getData());
         tc = Utils.<Vehicle>loadTable(model.getDataOrd(), view.getJTaulaVehicles(), Vehicle.class, true, true);
-        defecteTextDinamic();
     }
     
     public void carregarTaulaVehicleActual() {
         if (colVehicleActual == 0) {
-            carregarTaulaVehicle();
-            
+            carregarTaulaVehicle();          
         } else {
             carregarTaulaVehicleOrdenada();
-        }
-        
+        }       
     }
     
     public void carregarTaulaConductor() {
+        model.getDataConductor().addAll(model.getDataOrdConductor());
         tc = Utils.<Conductor>loadTable(model.getDataConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
     }
     
@@ -203,19 +202,22 @@ public class Controller {
         } else {
             carregarTaulaConductorOrdenada();
         }
-        defecteTextDinamic();
     }
     
     private void controlador() {
 
         //Codi que inicilitza la vista
         view.setVisible(true);
+        
+//        carregarTaulaVehicleActual();
+//        carregarTaulaConductorActual();
 
         //Inicialitzem els textos per defecte que ens mostrarà l'alicatiu
         defecteText();
 
         //TAULA
         //Carregar les dades localitzades a Model.java, tambè servirà per al insertar dades      
+
         carregarTaulaVehicleActual();
         carregarTaulaConductorActual();
 
@@ -227,18 +229,18 @@ public class Controller {
                 new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                
                 filaSel = view.getJTaulaVehicles().getSelectedRow();
-                TableColumnModel tcmE = view.getJTaulaVehicles().getColumnModel();
-                tcmE.addColumn(tc);
+                TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
+                tcm.addColumn(tc);
 //                        System.out.println(filaSel);  
-                Vehicle vehE = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcmE.getColumnCount() - 1);
+                Vehicle vehE = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount()-1);
 //                System.out.println(String.valueOf(vehE));
-                tcmE.removeColumn(tc);
+                tcm.removeColumn(tc);
                 view.getEditarNumeroText().setText(String.valueOf(vehE.get1_numero_Vehicle()));
                 view.getEditarAnyText().setText(String.valueOf(vehE.get3_any_Vehicle()));
                 view.getEditarModelText().setText(vehE.get2_model_Vehicle());
                 view.getEditarMarcaText().setText(vehE.get4_marca_Vehicle());
-
                 
             }
         }
@@ -356,8 +358,8 @@ public class Controller {
             Vehicle veh = (Vehicle) view.getJTaulaVehicles().getValueAt(view.getNumVehicleConductorCombobox().getSelectedIndex(),
                     tcm.getColumnCount() - 1);
 //                Vehicle veh = new Vehicle("Opel", "Corsa", 2004, 154);
-
             tcm.removeColumn(tc);
+            
             model.insertarConductor(view.getAfegirNomConductorText().getText(),
                     view.getAfegirCognomConductorText().getText(),
                     Integer.parseInt(view.getAfegirEdatConductorText().getText()),

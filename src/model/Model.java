@@ -50,7 +50,8 @@ public class Model {
     public Collection<Vehicle> getDataOrd() {
         return dataOrd;
     }
-
+    
+    
     public void insertarVehicle(String marca, String model, int any, int numero) {
         data.add(new Vehicle(marca, model, any, numero));
     }

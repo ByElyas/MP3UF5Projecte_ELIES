@@ -57,6 +57,7 @@ public class Vehicle implements Comparable<Vehicle> {
         this._1_numero_Vehicle = _1_numeroVehicle;
     }
 
+    
 
     public Vehicle(String _4_marcaVehicle, String _2_modelVehicle, int _3_anyVehicle, int _1_numeroVehicle) {
         this._4_marca_Vehicle = _4_marcaVehicle;

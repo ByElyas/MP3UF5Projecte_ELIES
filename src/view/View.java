@@ -754,7 +754,7 @@ public class View extends javax.swing.JFrame {
         return afegirConductorButton;
     }
 
-    public JComboBox<String> getNumVehicleConductorCombobox() {
+    public JComboBox getNumVehicleConductorCombobox() {
         return numVehicleConductorCombobox;
     }
 

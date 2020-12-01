@@ -16,7 +16,7 @@ import java.util.Comparator;
  * Conductor
  */
 public class Conductor implements Comparable<Conductor> {
-    
+
     private Vehicle _5_vehicle_Conductor;
     private String _4_nom_Conductor;
     private String _2_cognom_Conductor;
@@ -31,9 +31,6 @@ public class Conductor implements Comparable<Conductor> {
         this._5_vehicle_Conductor = _5_vehicle_Conductor;
     }
 
-    
-    
-    
     public String get4_nom_Conductor() {
         return _4_nom_Conductor;
     }
@@ -68,7 +65,7 @@ public class Conductor implements Comparable<Conductor> {
 
     public Conductor(String _4_nomConductor, String _2_cognomConductor, int _3_edatConductor, int _1_idConductor,
             Vehicle _5_vehicle_Conductor) {
-        
+
         this._5_vehicle_Conductor = _5_vehicle_Conductor;
         this._4_nom_Conductor = _4_nomConductor;
         this._2_cognom_Conductor = _2_cognomConductor;
@@ -79,8 +76,8 @@ public class Conductor implements Comparable<Conductor> {
     @Override
     public int compareTo(Conductor o) {
 //        return this._1_id_Conductor - o._1_id_Conductor;
-          return Comparator.comparing(Conductor::get1_id_Conductor).thenComparing(Conductor::get4_nom_Conductor)
-                  .compare(this, o);
+        return Comparator.comparing(Conductor::get1_id_Conductor).thenComparing(Conductor::get4_nom_Conductor)
+                .compare(this, o);
     }
 
 }
