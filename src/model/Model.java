@@ -38,7 +38,6 @@ public class Model {
 //        dataConductor.add(new Conductor("Frank", "Williams", 53, 1));
     }
 
-
     //Vehciles
     private Collection<Vehicle> data = new TreeSet<>();
     private Collection<Vehicle> dataOrd = new TreeSet<>(new VehicleOrdenatMarca());
@@ -50,8 +49,7 @@ public class Model {
     public Collection<Vehicle> getDataOrd() {
         return dataOrd;
     }
-    
-    
+
     public void insertarVehicle(String marca, String model, int any, int numero) {
         data.add(new Vehicle(marca, model, any, numero));
     }
@@ -97,21 +95,20 @@ public class Model {
     public void eliminarConductor(Conductor algo) {
         dataConductor.remove(algo);
     }
-      
 
-}
+    class ConductorOrdenatNom implements Comparator<Conductor> {
 
-class ConductorOrdenatNom implements Comparator<Conductor> {
-
-    @Override
-    public int compare(Conductor o1, Conductor o2) {
-        // return o1.get4_nom_Conductor().compareTo(o2.get4_nom_Conductor());
-        int p;
-        p = o1.get4_nom_Conductor().compareTo(o2.get4_nom_Conductor());
-        if (p != 0) {
-            return p;
+        @Override
+        public int compare(Conductor o1, Conductor o2) {
+            // return o1.get4_nom_Conductor().compareTo(o2.get4_nom_Conductor());
+            int p;
+            p = o1.get4_nom_Conductor().compareTo(o2.get4_nom_Conductor());
+            if (p != 0) {
+                return p;
+            }
+            return o1.get2_cognom_Conductor().compareTo(o2.get2_cognom_Conductor());
         }
-        return o1.get2_cognom_Conductor().compareTo(o2.get2_cognom_Conductor());
+
     }
 
 }
