@@ -42,6 +42,7 @@ public class Controller {
     private int filaSelCond = -1;
     private TableColumn tc;
     private TableColumn tcC;
+    private TableColumn tcAlgo;
 //    private TableColumn tcE;
 
     public Controller(Model m, View v) {
@@ -280,6 +281,7 @@ public class Controller {
                     Integer.parseInt(view.getAfegirNumeroText().getText())
             );
             carregarTaulaVehicleActual();
+            carregarTaulaVehicleActual();
         }
         );
 
@@ -292,6 +294,18 @@ public class Controller {
                 tcm.removeColumn(tc);
                 model.eliminarVehicle(veh);
                 carregarTaulaVehicleActual();
+                carregarTaulaConductorActual();
+                for (int i = 0; i <= view.getJTaulaConductor().getRowCount(); i++) {
+                    TableColumnModel tcmA = view.getJTaulaConductor().getColumnModel();
+                    tcmA.addColumn(tcC);
+                    Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(i, tcmA.getColumnCount() - 1);
+                    tcmA.removeColumn(tcC);
+                    if (cond.get5_vehicle_Conductor() == veh) {
+                        model.eliminarConductor(cond);
+                        carregarTaulaVehicleActual();
+                        carregarTaulaConductorActual();
+                    }
+                }
                 filaSel = -1;
             } else {
                 System.out.println(filaSel);
@@ -395,6 +409,7 @@ public class Controller {
                 tcm.removeColumn(tcC);
                 model.eliminarConductor(cond);
                 carregarTaulaConductorActual();
+                carregarTaulaVehicleActual();
                 filaSelCond = -1;
             } else {
                 System.out.println(filaSelCond);
