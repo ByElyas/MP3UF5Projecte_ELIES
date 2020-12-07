@@ -23,6 +23,15 @@ public class Vehicle implements Comparable<Vehicle> {
     private String _2_model_Vehicle;
     private int _3_any_Vehicle;
     private int _1_numero_Vehicle;
+    public Collection<Conductor> _5_cond = new TreeSet<>();
+
+    public Collection<Conductor> get5_cond() {
+        return _5_cond;
+    }
+
+    public void set5_cond(Collection<Conductor> _5_cond) {
+        this._5_cond = _5_cond;
+    }
 
     
     public String get4_marca_Vehicle() {

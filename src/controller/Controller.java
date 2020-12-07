@@ -242,7 +242,14 @@ public class Controller {
                 view.getEditarAnyText().setText(String.valueOf(vehE.get3_any_Vehicle()));
                 view.getEditarModelText().setText(vehE.get2_model_Vehicle());
                 view.getEditarMarcaText().setText(vehE.get4_marca_Vehicle());
-
+                if (filaSel != -1) {
+                    TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
+                    tcm.addColumn(tc);
+                    Vehicle obj = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount() - 1);
+                    tcm.removeColumn(tc);
+                    carregarTaulaVehicleActual();
+                    tcC = Utils.<Conductor>loadTable(obj.get5_cond(), view.getJTaulaConductor(), Conductor.class, true, true); 
+                }
             }
         }
         );

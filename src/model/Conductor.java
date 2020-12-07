@@ -71,6 +71,7 @@ public class Conductor implements Comparable<Conductor> {
         this._2_cognom_Conductor = _2_cognomConductor;
         this._3_edat_Conductor = _3_edatConductor;
         this._1_id_Conductor = _1_idConductor;
+        this._5_vehicle_Conductor.get5_cond().add(this);
     }
 
     @Override
