@@ -50,17 +50,27 @@ public class Model {
         return dataOrd;
     }
 
+    //metode generic per a insertar dades --- tambè serveix per a conductor
+    public static <T> void insertar(T a, Collection<T> col) {
+        col.add(a);
+    }
+    
+    
+    
     public void insertarVehicle(String marca, String model, int any, int numero) {
-        data.add(new Vehicle(marca, model, any, numero));
+        Vehicle ve = new Vehicle(marca, model, any, numero);
+        Model.insertar(ve, data);
+        Model.insertar(ve, dataOrd);
     }
 
     public void eliminarVehicle(Vehicle algo) {
         data.remove(algo);
+        dataOrd.remove(algo);
     }
 
-    public void actualitzarVehicle(String marca, String model, int any, int numero) {
-
-    }
+//    public void actualitzarVehicle(String marca, String model, int any, int numero) {
+//
+//    }
 
     class VehicleOrdenatMarca implements Comparator<Vehicle> {
 
@@ -89,11 +99,14 @@ public class Model {
     }
 
     public void insertarConductor(String nom, String cognom, int edat, int id, Vehicle vehicle_Conductor) {
-        dataConductor.add(new Conductor(nom, cognom, edat, id, vehicle_Conductor));
+        Conductor co = new Conductor(nom, cognom, edat, id, vehicle_Conductor);
+        Model.insertar(co, dataConductor);
+        Model.insertar(co, dataOrdConductor);
     }
 
     public void eliminarConductor(Conductor algo) {
         dataConductor.remove(algo);
+        dataOrdConductor.remove(algo);
     }
 
     class ConductorOrdenatNom implements Comparator<Conductor> {
