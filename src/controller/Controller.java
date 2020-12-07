@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import static java.lang.System.console;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -40,6 +41,7 @@ public class Controller {
     private int filaSel = -1;
     private int filaSelCond = -1;
     private TableColumn tc;
+    private TableColumn tcC;
 //    private TableColumn tcE;
 
     public Controller(Model m, View v) {
@@ -61,9 +63,6 @@ public class Controller {
         model.insertarVehicle("Nissan", "Silvia S15", 1998, 66);
         model.insertarVehicle("Audi", "Quattro Sport", 1988, 24);
         model.insertarVehicle("Seat", "Ibiza KitCar", 1995, 7);
-//        model.insertarVehicle("Nissan", "Silvia S15", 1998, 66, 2254, 6587);
-//        ids_cond.add(222, 1);
-//        model.insertarVehicle("Nissan", "Silvia S15", 1998, 66, ids_cond);
 
         //Conductors per defecte
 //        model.insertarConductor("Pepe", "Viyuela", 45, 6589);
@@ -185,12 +184,12 @@ public class Controller {
 
     public void carregarTaulaConductor() {
         model.getDataConductor().addAll(model.getDataOrdConductor());
-        tc = Utils.<Conductor>loadTable(model.getDataConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
+        tcC = Utils.<Conductor>loadTable(model.getDataConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
     }
 
     public void carregarTaulaConductorOrdenada() {
         model.getDataOrdConductor().addAll(model.getDataConductor());
-        tc = Utils.<Conductor>loadTable(model.getDataOrdConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
+        tcC = Utils.<Conductor>loadTable(model.getDataOrdConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
     }
 
     public void carregarTaulaConductorActual() {
@@ -202,11 +201,14 @@ public class Controller {
         }
     }
 
+
+
     private void controlador() {
 
+//        DefaultTableModel m = new DefaultTableModel();
+//        view.getJTaulaVehicles().setModel(m);
         //Codi que inicilitza la vista
         view.setVisible(true);
-
 //        carregarTaulaVehicleActual();
 //        carregarTaulaConductorActual();
         //Inicialitzem els textos per defecte que ens mostrarà l'alicatiu
@@ -214,7 +216,6 @@ public class Controller {
 
         //TAULA
         //Carregar les dades localitzades a Model.java, tambè servirà per al insertar dades      
-        //prova coses nazis
         carregarTaulaVehicleActual();
         carregarTaulaConductorActual();
 
@@ -227,12 +228,16 @@ public class Controller {
             @Override
             public void mouseClicked(MouseEvent e) {
                 filaSel = view.getJTaulaVehicles().getSelectedRow();
-                TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
-                tcm.addColumn(tc);
-//                        System.out.println(filaSel);  
-                Vehicle vehE = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount() - 1);
+                TableColumnModel tcmMC = view.getJTaulaVehicles().getColumnModel();
+                System.out.println(tcmMC.getColumnCount());
+                tcmMC.addColumn(tc);
+//                DefaultTableModel m = (DefaultTableModel() view.getJTaulaVehicles().getModel();
+                System.out.println(filaSel);
+                System.out.println(tcmMC.getColumnCount());
+//                System.out.println(Vehicle.class.getClass().getName());
+                Vehicle vehE = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcmMC.getColumnCount()-1);
 //                System.out.println(String.valueOf(vehE));
-                tcm.removeColumn(tc);
+                tcmMC.removeColumn(tc);
                 view.getEditarNumeroText().setText(String.valueOf(vehE.get1_numero_Vehicle()));
                 view.getEditarAnyText().setText(String.valueOf(vehE.get3_any_Vehicle()));
                 view.getEditarModelText().setText(vehE.get2_model_Vehicle());
@@ -252,6 +257,7 @@ public class Controller {
                 veh.set4_marca_Vehicle(view.getEditarMarcaText().getText());
                 tcm.removeColumn(tc);
                 filaSel = -1;
+                carregarTaulaVehicleActual();
             } else {
                 System.out.println(filaSel);
                 JOptionPane.showMessageDialog(view, "Has de seleccionar una fila per a editarla");
@@ -311,11 +317,11 @@ public class Controller {
             public void mouseClicked(MouseEvent e) {
                 filaSelCond = view.getJTaulaConductor().getSelectedRow();
                 TableColumnModel tcmCondE = view.getJTaulaConductor().getColumnModel();
-                tcmCondE.addColumn(tc);
+                tcmCondE.addColumn(tcC);
 //                        System.out.println(filaSel);  
                 Conductor condE = (Conductor) view.getJTaulaConductor().getValueAt(filaSelCond, tcmCondE.getColumnCount() - 1);
 //                System.out.println(String.valueOf(vehE));
-                tcmCondE.removeColumn(tc);
+                tcmCondE.removeColumn(tcC);
                 view.getEditarIdConductorText().setText(String.valueOf(condE.get1_id_Conductor()));
                 view.getEditarEdatConductorText().setText(String.valueOf(condE.get3_edat_Conductor()));
                 view.getEditarCognomConductorText().setText(condE.get2_cognom_Conductor());
@@ -326,6 +332,7 @@ public class Controller {
         );
         view.getEditarConductorButton().addActionListener(e -> {
 //                    System.out.println(filaSel);
+            carregarTaulaVehicleActual();
             if (filaSelCond != -1) {
                 TableColumnModel tcm = view.getJTaulaConductor().getColumnModel();
                 tcm.addColumn(tc);
@@ -337,7 +344,9 @@ public class Controller {
                 cond.set3_edat_Conductor(Integer.parseInt(view.getEditarEdatConductorText().getText()));
                 cond.set4_nom_Conductor(view.getEditarNomConductorText().getText());
                 tcm.removeColumn(tc);
+
                 carregarTaulaConductorActual();
+
                 filaSelCond = -1;
             } else {
                 System.out.println(filaSelCond);
@@ -372,18 +381,17 @@ public class Controller {
 //                    System.out.println(filaSel);
             if (filaSelCond != -1) {
                 TableColumnModel tcm = view.getJTaulaConductor().getColumnModel();
-
+                tcm.addColumn(tcC);
 //                        System.out.println(filaSel);  
                 Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(filaSelCond, tcm.getColumnCount() - 1);
 //                        System.out.println(veh.toString());
-                tcm.removeColumn(tc);
+                tcm.removeColumn(tcC);
                 model.eliminarConductor(cond);
                 carregarTaulaConductorActual();
                 filaSelCond = -1;
             } else {
                 System.out.println(filaSelCond);
                 JOptionPane.showMessageDialog(view, "Has de seleccionar una fila per a borrarla!");
-                carregarTaulaVehicleActual();
             }
         }
         );

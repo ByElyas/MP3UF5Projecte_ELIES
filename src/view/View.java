@@ -554,6 +554,8 @@ public class View extends javax.swing.JFrame {
                 new View().setVisible(true);
             }
         });
+        
+        
     }
    
     //COSES VEHICLE
