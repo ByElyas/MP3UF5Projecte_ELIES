@@ -57,13 +57,15 @@ public class Controller {
          * VEHICLE
          */
         //Vehicles per defecte
-        model.insertarVehicle("Mazda", "RX-7 FC", 1989, 6);
-        model.insertarVehicle("Unity", "RX-7 FC", 1986, 8);
-        model.insertarVehicle("Nissan", "Skyline GTR R32", 1991, 22);
-        model.insertarVehicle("Toyota", "Corolla Trueno AE86", 1986, 86);
-        model.insertarVehicle("Nissan", "Silvia S15", 1998, 66);
-        model.insertarVehicle("Audi", "Quattro Sport", 1988, 24);
-        model.insertarVehicle("Seat", "Ibiza KitCar", 1995, 7);
+        String[] sponsors_exemple = {"Pirelli", "Repsol", "SPARCO"};
+        System.out.println(Arrays.toString(sponsors_exemple));
+        model.insertarVehicle("Mazda", "RX-7 FC", 1989, 6, sponsors_exemple );
+        model.insertarVehicle("Unity", "RX-7 FC", 1986, 8, sponsors_exemple);
+        model.insertarVehicle("Nissan", "Skyline GTR R32", 1991, 22, sponsors_exemple);
+//        model.insertarVehicle("Toyota", "Corolla Trueno AE86", 1986, 86);
+//        model.insertarVehicle("Nissan", "Silvia S15", 1998, 66);
+//        model.insertarVehicle("Audi", "Quattro Sport", 1988, 24);
+//        model.insertarVehicle("Seat", "Ibiza KitCar", 1995, 7);
 
         //Conductors per defecte
 //        model.insertarConductor("Pepe", "Viyuela", 45, 6589);
@@ -166,8 +168,11 @@ public class Controller {
 //     
 //    }
     public void carregarTaulaVehicle() {
+        System.out.println(model.getData());
+        System.out.println();
         model.getData().addAll(model.getDataOrd());
         tc = Utils.<Vehicle>loadTable(model.getData(), view.getJTaulaVehicles(), Vehicle.class, true, true);
+ 
     }
 
     public void carregarTaulaVehicleOrdenada() {
@@ -183,7 +188,7 @@ public class Controller {
         }
     }
 
-    public void carregarTaulaConductor() {
+    public void carregarTaulaConductor() {        
         model.getDataConductor().addAll(model.getDataOrdConductor());
         tcC = Utils.<Conductor>loadTable(model.getDataConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
     }
@@ -249,7 +254,7 @@ public class Controller {
                     Vehicle obj = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount() - 1);
                     tcm.removeColumn(tc);
                     carregarTaulaVehicleActual();
-                    tcC = Utils.<Conductor>loadTable(obj.get5_cond(), view.getJTaulaConductor(), Conductor.class, true, true); 
+                    tcC = Utils.<Conductor>loadTable(obj.get6_cond(), view.getJTaulaConductor(), Conductor.class, true, true); 
                 }
             }
         }
@@ -275,10 +280,12 @@ public class Controller {
 
         //afegirVehicle
         view.getAfegirVehicleButton().addActionListener(e -> {
+            String[] sponsors_vehicle = {view.getAfegirSponsor1Text().getText(), view.getAfegirSponsor2Text().getText(), view.getAfegirSponsor3Text().getText()};
             model.insertarVehicle(view.getAfegirMarcaText().getText(),
                     view.getAfegirModelText().getText(),
                     Integer.parseInt(view.getAfegirAnyText().getText()),
-                    Integer.parseInt(view.getAfegirNumeroText().getText())
+                    Integer.parseInt(view.getAfegirNumeroText().getText()),
+                    sponsors_vehicle
             );
             carregarTaulaVehicleActual();
             carregarTaulaVehicleActual();

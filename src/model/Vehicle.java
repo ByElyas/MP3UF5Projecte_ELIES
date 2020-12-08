@@ -19,18 +19,29 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Vehicle implements Comparable<Vehicle> {
     
+    private String[] _5_sponsors_Vehicle;
     private String _4_marca_Vehicle;
     private String _2_model_Vehicle;
     private int _3_any_Vehicle;
     private int _1_numero_Vehicle;
-    public Collection<Conductor> _5_cond = new TreeSet<>();
+    public Collection<Conductor> _6_cond = new TreeSet<>();
 
-    public Collection<Conductor> get5_cond() {
-        return _5_cond;
+    public String[] get5_sponsors_Vehicle() {
+        return _5_sponsors_Vehicle;
     }
 
-    public void set5_cond(Collection<Conductor> _5_cond) {
-        this._5_cond = _5_cond;
+    public void set5_sponsors_Vehicle(String[] _5_sponsors_Vehicle) {
+        this._5_sponsors_Vehicle = _5_sponsors_Vehicle;
+    }
+    
+    
+
+    public Collection<Conductor> get6_cond() {
+        return _6_cond;
+    }
+
+    public void set6_cond(Collection<Conductor> _6_cond) {
+        this._6_cond = _6_cond;
     }
 
     
@@ -68,7 +79,8 @@ public class Vehicle implements Comparable<Vehicle> {
 
     
 
-    public Vehicle(String _4_marcaVehicle, String _2_modelVehicle, int _3_anyVehicle, int _1_numeroVehicle) {
+    public Vehicle(String _4_marcaVehicle, String _2_modelVehicle, int _3_anyVehicle, int _1_numeroVehicle, String[] _5_sponsors_Vehicle) {
+        this._5_sponsors_Vehicle = _5_sponsors_Vehicle;
         this._4_marca_Vehicle = _4_marcaVehicle;
         this._2_model_Vehicle = _2_modelVehicle;
         this._3_any_Vehicle = _3_anyVehicle;

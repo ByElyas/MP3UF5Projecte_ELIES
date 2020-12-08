@@ -57,8 +57,8 @@ public class Model {
     
     
     
-    public void insertarVehicle(String marca, String model, int any, int numero) {
-        Vehicle ve = new Vehicle(marca, model, any, numero);
+    public void insertarVehicle(String marca, String model, int any, int numero, String[] sponsors) {
+        Vehicle ve = new Vehicle(marca, model, any, numero, sponsors);
         Model.insertar(ve, data);
         Model.insertar(ve, dataOrd);
     }
