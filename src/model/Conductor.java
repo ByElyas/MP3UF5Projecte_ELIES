@@ -23,8 +23,8 @@ public class Conductor implements Comparable<Conductor> {
     private int _3_edat_Conductor;
     private int _1_id_Conductor;
 
-    public Vehicle get5_vehicle_Conductor() {
-        return _5_vehicle_Conductor;
+    public int get5_vehicle_Conductor() {
+        return _5_vehicle_Conductor.get1_numero_Vehicle();
     }
 
     public void set5_vehicle_Conductor(Vehicle _5_vehicle_Conductor) {

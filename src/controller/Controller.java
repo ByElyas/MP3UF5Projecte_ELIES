@@ -59,7 +59,7 @@ public class Controller {
         //Vehicles per defecte
         String[] sponsors_exemple = {"Pirelli", "Repsol", "SPARCO"};
         System.out.println(Arrays.toString(sponsors_exemple));
-        model.insertarVehicle("Mazda", "RX-7 FC", 1989, 6, sponsors_exemple );
+        model.insertarVehicle("Mazda", "RX-7 FC", 1989, 6, sponsors_exemple);
         model.insertarVehicle("Unity", "RX-7 FC", 1986, 8, sponsors_exemple);
         model.insertarVehicle("Nissan", "Skyline GTR R32", 1991, 22, sponsors_exemple);
 //        model.insertarVehicle("Toyota", "Corolla Trueno AE86", 1986, 86);
@@ -83,6 +83,12 @@ public class Controller {
         view.getAfegirModelText().setText("Model Placeholder");
         view.getAfegirAnyText().setText("9999");
         view.getAfegirNumeroText().setText("999");
+        view.getAfegirSponsor1Label().setText("Sponsor 1");
+        view.getAfegirSponsor2Label().setText("Sponsor 2");
+        view.getAfegirSponsor3Label().setText("Sponsor 3");
+        view.getAfegirSponsor1Text().setText("Exemple");
+        view.getAfegirSponsor2Text().setText("Exemple");
+        view.getAfegirSponsor3Text().setText("Exemple");
 
         //FILTRE
         view.getFiltrarVehiclesCombobox().removeAllItems();
@@ -155,24 +161,27 @@ public class Controller {
 //        tcmE.removeColumn(tc);
         view.getNumVehicleConductorLabel().setText("Numero del vehicle");
 
-        //Combobox per a elegir vehicle per als conductors nous               
+        actualitzarComboboxCond();
+    }
+
+    public void actualitzarComboboxCond() {
+                //Combobox per a elegir vehicle per als conductors nous               
         view.getNumVehicleConductorCombobox().removeAllItems();
 //        Combobox per a elegir vehicle per al conductor
 //        System.out.println(view.getJTaulaConductor().getColumnCount());
         //Utils.<Vehicle>loadCombo(model.getData(), view.getNumVehicleConductorCombobox());   
         Utils.<Vehicle>loadCombo(model.getData(), view.getNumVehicleConductorCombobox());
-
     }
-
 //    public void defecteTextDinamic() {
 //     
 //    }
     public void carregarTaulaVehicle() {
-        System.out.println(model.getData());
-        System.out.println();
+//        System.out.println(model.getData());
+//        System.out.println();
+        System.out.println(filaSel);
         model.getData().addAll(model.getDataOrd());
         tc = Utils.<Vehicle>loadTable(model.getData(), view.getJTaulaVehicles(), Vehicle.class, true, true);
- 
+
     }
 
     public void carregarTaulaVehicleOrdenada() {
@@ -188,7 +197,7 @@ public class Controller {
         }
     }
 
-    public void carregarTaulaConductor() {        
+    public void carregarTaulaConductor() {
         model.getDataConductor().addAll(model.getDataOrdConductor());
         tcC = Utils.<Conductor>loadTable(model.getDataConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
     }
@@ -206,8 +215,6 @@ public class Controller {
             carregarTaulaConductorOrdenada();
         }
     }
-
-
 
     private void controlador() {
 
@@ -235,13 +242,13 @@ public class Controller {
             public void mouseClicked(MouseEvent e) {
                 filaSel = view.getJTaulaVehicles().getSelectedRow();
                 TableColumnModel tcmMC = view.getJTaulaVehicles().getColumnModel();
-                System.out.println(tcmMC.getColumnCount());
+//                System.out.println(tcmMC.getColumnCount());
                 tcmMC.addColumn(tc);
 //                DefaultTableModel m = (DefaultTableModel() view.getJTaulaVehicles().getModel();
-                System.out.println(filaSel);
-                System.out.println(tcmMC.getColumnCount());
+//                System.out.println(filaSel);
+//                System.out.println(tcmMC.getColumnCount());
 //                System.out.println(Vehicle.class.getClass().getName());
-                Vehicle vehE = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcmMC.getColumnCount()-1);
+                Vehicle vehE = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcmMC.getColumnCount() - 1);
 //                System.out.println(String.valueOf(vehE));
                 tcmMC.removeColumn(tc);
                 view.getEditarNumeroText().setText(String.valueOf(vehE.get1_numero_Vehicle()));
@@ -254,7 +261,7 @@ public class Controller {
                     Vehicle obj = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount() - 1);
                     tcm.removeColumn(tc);
                     carregarTaulaVehicleActual();
-                    tcC = Utils.<Conductor>loadTable(obj.get6_cond(), view.getJTaulaConductor(), Conductor.class, true, true); 
+                    tcC = Utils.<Conductor>loadTable(obj.get6_cond(), view.getJTaulaConductor(), Conductor.class, true, true);
                 }
             }
         }
@@ -280,15 +287,22 @@ public class Controller {
 
         //afegirVehicle
         view.getAfegirVehicleButton().addActionListener(e -> {
-            String[] sponsors_vehicle = {view.getAfegirSponsor1Text().getText(), view.getAfegirSponsor2Text().getText(), view.getAfegirSponsor3Text().getText()};
-            model.insertarVehicle(view.getAfegirMarcaText().getText(),
-                    view.getAfegirModelText().getText(),
-                    Integer.parseInt(view.getAfegirAnyText().getText()),
-                    Integer.parseInt(view.getAfegirNumeroText().getText()),
-                    sponsors_vehicle
-            );
-            carregarTaulaVehicleActual();
-            carregarTaulaVehicleActual();
+            //Exemple de validesa utilitzant expressions regulars
+            if (view.getAfegirNumeroText().getText().matches("\\d{2}") || view.getAfegirNumeroText().getText().matches("\\d{1}")) {
+                String[] sponsors_vehicle = {view.getAfegirSponsor1Text().getText(), view.getAfegirSponsor2Text().getText(), view.getAfegirSponsor3Text().getText()};
+                model.insertarVehicle(view.getAfegirMarcaText().getText(),
+                        view.getAfegirModelText().getText(),
+                        Integer.parseInt(view.getAfegirAnyText().getText()),
+                        Integer.parseInt(view.getAfegirNumeroText().getText()),
+                        sponsors_vehicle
+                );
+                actualitzarComboboxCond();
+                carregarTaulaVehicleActual();
+                carregarTaulaVehicleActual();
+            } else {
+                JOptionPane.showMessageDialog(view, "El numero del vehicle ha de ser inferior a 100!");
+            }
+
         }
         );
 
@@ -307,7 +321,7 @@ public class Controller {
                     tcmA.addColumn(tcC);
                     Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(i, tcmA.getColumnCount() - 1);
                     tcmA.removeColumn(tcC);
-                    if (cond.get5_vehicle_Conductor() == veh) {
+                    if (cond.get5_vehicle_Conductor() == veh.get1_numero_Vehicle()) {
                         model.eliminarConductor(cond);
                         carregarTaulaVehicleActual();
                         carregarTaulaConductorActual();

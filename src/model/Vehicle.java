@@ -26,8 +26,12 @@ public class Vehicle implements Comparable<Vehicle> {
     private int _1_numero_Vehicle;
     public Collection<Conductor> _6_cond = new TreeSet<>();
 
-    public String[] get5_sponsors_Vehicle() {
-        return _5_sponsors_Vehicle;
+    public String get5_sponsors_Vehicle() {
+        String res = "";
+        for (int i = 0; i < _5_sponsors_Vehicle.length; i++) {
+            res = res + _5_sponsors_Vehicle[i].toString() + ",";
+        }
+        return res;
     }
 
     public void set5_sponsors_Vehicle(String[] _5_sponsors_Vehicle) {
