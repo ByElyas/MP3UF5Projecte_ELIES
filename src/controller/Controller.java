@@ -165,7 +165,7 @@ public class Controller {
     }
 
     public void actualitzarComboboxCond() {
-                //Combobox per a elegir vehicle per als conductors nous               
+        //Combobox per a elegir vehicle per als conductors nous               
         view.getNumVehicleConductorCombobox().removeAllItems();
 //        Combobox per a elegir vehicle per al conductor
 //        System.out.println(view.getJTaulaConductor().getColumnCount());
@@ -175,10 +175,11 @@ public class Controller {
 //    public void defecteTextDinamic() {
 //     
 //    }
+
     public void carregarTaulaVehicle() {
 //        System.out.println(model.getData());
 //        System.out.println();
-        System.out.println(filaSel);
+//        System.out.println(filaSel);
         model.getData().addAll(model.getDataOrd());
         tc = Utils.<Vehicle>loadTable(model.getData(), view.getJTaulaVehicles(), Vehicle.class, true, true);
 
@@ -288,25 +289,45 @@ public class Controller {
         //afegirVehicle
         view.getAfegirVehicleButton().addActionListener(e -> {
             //Exemple de validesa utilitzant expressions regulars
-            if (view.getAfegirNumeroText().getText().matches("\\d{2}") || view.getAfegirNumeroText().getText().matches("\\d{1}")) {
-                String[] sponsors_vehicle = {view.getAfegirSponsor1Text().getText(), view.getAfegirSponsor2Text().getText(), view.getAfegirSponsor3Text().getText()};
-                model.insertarVehicle(view.getAfegirMarcaText().getText(),
-                        view.getAfegirModelText().getText(),
-                        Integer.parseInt(view.getAfegirAnyText().getText()),
-                        Integer.parseInt(view.getAfegirNumeroText().getText()),
-                        sponsors_vehicle
-                );
-                actualitzarComboboxCond();
-                carregarTaulaVehicleActual();
-                carregarTaulaVehicleActual();
+            if (view.getAfegirNumeroText().getText().isBlank()
+                    || view.getAfegirMarcaText().getText().isBlank()
+                    || view.getAfegirModelText().getText().isBlank()
+                    || view.getAfegirAnyText().getText().isBlank()) {
+                JOptionPane.showMessageDialog(view, "Hi ha algun camp buit. No pot haver-hi cap camp buit!");
             } else {
-                JOptionPane.showMessageDialog(view, "El numero del vehicle ha de ser inferior a 100!");
+                if (view.getAfegirNumeroText().getText().matches("\\d{2}") || view.getAfegirNumeroText().getText().matches("\\d{1}")) {
+                    String[] sponsors_vehicle = {view.getAfegirSponsor1Text().getText(), view.getAfegirSponsor2Text().getText(), view.getAfegirSponsor3Text().getText()};
+                    try {
+                        if (Integer.parseInt(view.getAfegirAnyText().getText()) < 1900
+                                || Integer.parseInt(view.getAfegirAnyText().getText()) > 2030) 
+                        {
+                            JOptionPane.showMessageDialog(view, "El any ha de ser valid (entre 1900 i 2030)");    
+                        } else {
+                            model.insertarVehicle(view.getAfegirMarcaText().getText(),
+                                    view.getAfegirModelText().getText(),
+                                    Integer.parseInt(view.getAfegirAnyText().getText()),
+                                    Integer.parseInt(view.getAfegirNumeroText().getText()),
+                                    sponsors_vehicle
+                            );
+                        }
+                    } catch (NumberFormatException x) {
+                        JOptionPane.showMessageDialog(view, "El any ha de ser un ANY (en numeros, no escrit)");
+                    }
+                    actualitzarComboboxCond();
+                    carregarTaulaVehicleActual();
+                    carregarTaulaVehicleActual();
+                } else {
+                    JOptionPane.showMessageDialog(view, "El numero del vehicle ha de ser inferior a 100! I no pot ser"
+                            + " una paraula, lletres, etc..");
+                }
             }
 
         }
         );
 
         //eliminarVehicle
+        //Aqui sempre dona un IndexArrayOutOfBounds bla bla bla 0 <= 0... o algo així. OPerò el programa funciona bè
+        //així que no tinc ni idea de que es.
         view.getEliminarVehicleButton().addActionListener(e -> {
             if (filaSel != -1) {
                 TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
