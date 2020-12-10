@@ -340,19 +340,22 @@ public class Controller {
                 carregarTaulaConductorActual();
                 //Vale, lo index out of bounds sempre el dona quan es borra un vehicle que no te cap conductor relacionat
                 //aaaaaaaaaaaaaaamigo amigo
-                for (int i = 0; i <= view.getJTaulaConductor().getRowCount(); i++) {
-                    TableColumnModel tcmA = view.getJTaulaConductor().getColumnModel();
-                    tcmA.addColumn(tcC);
-                    //La Exception la dona aqui -->
-                    Conductor condR = (Conductor) view.getJTaulaConductor().getValueAt(i, tcmA.getColumnCount() - 1);
-                    // <--
-                    tcmA.removeColumn(tcC);
-                    if (condR.get5_vehicle_Conductor() == veh.get1_numero_Vehicle()) {
-                        model.eliminarConductor(condR);
-                        carregarTaulaVehicleActual();
-                        carregarTaulaConductorActual();
+//                System.out.println(veh.get6_cond());
+//                if (!veh.get6_cond().equals("[]")) {
+                    for (int i = 0; i < view.getJTaulaConductor().getRowCount(); i++) {
+                        TableColumnModel tcmA = view.getJTaulaConductor().getColumnModel();
+                        tcmA.addColumn(tcC);
+                        //La Exception la dona aqui -->
+                        Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(i, tcmA.getColumnCount() - 1);
+                        // <--
+                        tcmA.removeColumn(tcC);
+                        if (cond.get5_vehicle_Conductor() == veh.get1_numero_Vehicle()) {
+                            model.eliminarConductor(cond);
+                            carregarTaulaVehicleActual();
+                            carregarTaulaConductorActual();
+                        }
                     }
-                }
+//                }
 
                 filaSel = -1;
             } else {
