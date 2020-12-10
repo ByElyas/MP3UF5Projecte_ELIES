@@ -180,13 +180,13 @@ public class Controller {
 //        System.out.println(model.getData());
 //        System.out.println();
 //        System.out.println(filaSel);
-        model.getData().addAll(model.getDataOrd());
+////        model.getData().addAll(model.getDataOrd());
         tc = Utils.<Vehicle>loadTable(model.getData(), view.getJTaulaVehicles(), Vehicle.class, true, true);
 
     }
 
     public void carregarTaulaVehicleOrdenada() {
-        model.getDataOrd().addAll(model.getData());
+//        model.getDataOrd().addAll(model.getData());
         tc = Utils.<Vehicle>loadTable(model.getDataOrd(), view.getJTaulaVehicles(), Vehicle.class, true, true);
     }
 
@@ -199,12 +199,12 @@ public class Controller {
     }
 
     public void carregarTaulaConductor() {
-        model.getDataConductor().addAll(model.getDataOrdConductor());
+//        model.getDataConductor().addAll(model.getDataOrdConductor());
         tcC = Utils.<Conductor>loadTable(model.getDataConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
     }
 
     public void carregarTaulaConductorOrdenada() {
-        model.getDataOrdConductor().addAll(model.getDataConductor());
+//        model.getDataOrdConductor().addAll(model.getDataConductor());
         tcC = Utils.<Conductor>loadTable(model.getDataOrdConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
     }
 
@@ -235,7 +235,6 @@ public class Controller {
 
         //ACCIONS DE CRUD AQUI
         //VEHICLE
-        //editarVehicle
         //Afegir text dinamic a l'apartat de edit
         view.getJTaulaVehicles().addMouseListener(
                 new MouseAdapter() {
@@ -264,8 +263,10 @@ public class Controller {
                     carregarTaulaVehicleActual();
                     tcC = Utils.<Conductor>loadTable(obj.get6_cond(), view.getJTaulaConductor(), Conductor.class, true, true);
                 }
+//                carregarTaulaConductorActual();
             }
         }
+        //EDITAR VEHICLE
         );
         view.getEditarVehicleButton().addActionListener(e -> {
             if (filaSel != -1) {
@@ -299,9 +300,8 @@ public class Controller {
                     String[] sponsors_vehicle = {view.getAfegirSponsor1Text().getText(), view.getAfegirSponsor2Text().getText(), view.getAfegirSponsor3Text().getText()};
                     try {
                         if (Integer.parseInt(view.getAfegirAnyText().getText()) < 1900
-                                || Integer.parseInt(view.getAfegirAnyText().getText()) > 2030) 
-                        {
-                            JOptionPane.showMessageDialog(view, "El any ha de ser valid (entre 1900 i 2030)");    
+                                || Integer.parseInt(view.getAfegirAnyText().getText()) > 2030) {
+                            JOptionPane.showMessageDialog(view, "El any ha de ser valid (entre 1900 i 2030)");
                         } else {
                             model.insertarVehicle(view.getAfegirMarcaText().getText(),
                                     view.getAfegirModelText().getText(),
@@ -335,19 +335,25 @@ public class Controller {
                 Vehicle veh = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcm.getColumnCount() - 1);
                 tcm.removeColumn(tc);
                 model.eliminarVehicle(veh);
+                actualitzarComboboxCond();
                 carregarTaulaVehicleActual();
                 carregarTaulaConductorActual();
+                //Vale, lo index out of bounds sempre el dona quan es borra un vehicle que no te cap conductor relacionat
+                //aaaaaaaaaaaaaaamigo amigo
                 for (int i = 0; i <= view.getJTaulaConductor().getRowCount(); i++) {
                     TableColumnModel tcmA = view.getJTaulaConductor().getColumnModel();
                     tcmA.addColumn(tcC);
-                    Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(i, tcmA.getColumnCount() - 1);
+                    //La Exception la dona aqui -->
+                    Conductor condR = (Conductor) view.getJTaulaConductor().getValueAt(i, tcmA.getColumnCount() - 1);
+                    // <--
                     tcmA.removeColumn(tcC);
-                    if (cond.get5_vehicle_Conductor() == veh.get1_numero_Vehicle()) {
-                        model.eliminarConductor(cond);
+                    if (condR.get5_vehicle_Conductor() == veh.get1_numero_Vehicle()) {
+                        model.eliminarConductor(condR);
                         carregarTaulaVehicleActual();
                         carregarTaulaConductorActual();
                     }
                 }
+
                 filaSel = -1;
             } else {
                 System.out.println(filaSel);
