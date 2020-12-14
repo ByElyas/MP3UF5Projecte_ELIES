@@ -81,8 +81,8 @@ public class Controller {
 //        view.getAfegirMarcaText().setSize(0, 0);
         view.getAfegirMarcaText().setText("Marca Placeholder");
         view.getAfegirModelText().setText("Model Placeholder");
-        view.getAfegirAnyText().setText("9999");
-        view.getAfegirNumeroText().setText("999");
+        view.getAfegirAnyText().setText("1900");
+        view.getAfegirNumeroText().setText("99");
         view.getAfegirSponsor1Label().setText("Sponsor 1");
         view.getAfegirSponsor2Label().setText("Sponsor 2");
         view.getAfegirSponsor3Label().setText("Sponsor 3");
@@ -289,13 +289,14 @@ public class Controller {
 
         //afegirVehicle
         view.getAfegirVehicleButton().addActionListener(e -> {
-            //Exemple de validesa utilitzant expressions regulars
+
             if (view.getAfegirNumeroText().getText().isBlank()
                     || view.getAfegirMarcaText().getText().isBlank()
                     || view.getAfegirModelText().getText().isBlank()
                     || view.getAfegirAnyText().getText().isBlank()) {
                 JOptionPane.showMessageDialog(view, "Hi ha algun camp buit. No pot haver-hi cap camp buit!");
             } else {
+                //Exemple de validesa utilitzant expressions regulars
                 if (view.getAfegirNumeroText().getText().matches("\\d{2}") || view.getAfegirNumeroText().getText().matches("\\d{1}")) {
                     String[] sponsors_vehicle = {view.getAfegirSponsor1Text().getText(), view.getAfegirSponsor2Text().getText(), view.getAfegirSponsor3Text().getText()};
                     try {
@@ -326,8 +327,6 @@ public class Controller {
         );
 
         //eliminarVehicle
-        //Aqui sempre dona un IndexArrayOutOfBounds bla bla bla 0 <= 0... o algo així. OPerò el programa funciona bè
-        //així que no tinc ni idea de que es.
         view.getEliminarVehicleButton().addActionListener(e -> {
             if (filaSel != -1) {
                 TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
@@ -338,24 +337,17 @@ public class Controller {
                 actualitzarComboboxCond();
                 carregarTaulaVehicleActual();
                 carregarTaulaConductorActual();
-                //Vale, lo index out of bounds sempre el dona quan es borra un vehicle que no te cap conductor relacionat
-                //aaaaaaaaaaaaaaamigo amigo
-//                System.out.println(veh.get6_cond());
-//                if (!veh.get6_cond().equals("[]")) {
-                    for (int i = 0; i < view.getJTaulaConductor().getRowCount(); i++) {
-                        TableColumnModel tcmA = view.getJTaulaConductor().getColumnModel();
-                        tcmA.addColumn(tcC);
-                        //La Exception la dona aqui -->
-                        Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(i, tcmA.getColumnCount() - 1);
-                        // <--
-                        tcmA.removeColumn(tcC);
-                        if (cond.get5_vehicle_Conductor() == veh.get1_numero_Vehicle()) {
-                            model.eliminarConductor(cond);
-                            carregarTaulaVehicleActual();
-                            carregarTaulaConductorActual();
-                        }
+                for (int i = 0; i < view.getJTaulaConductor().getRowCount(); i++) {
+                    TableColumnModel tcmA = view.getJTaulaConductor().getColumnModel();
+                    tcmA.addColumn(tcC);
+                    Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(i, tcmA.getColumnCount() - 1);
+                    tcmA.removeColumn(tcC);
+                    if (cond.get5_vehicle_Conductor() == veh.get1_numero_Vehicle()) {
+                        model.eliminarConductor(cond);
+                        carregarTaulaVehicleActual();
+                        carregarTaulaConductorActual();
                     }
-//                }
+                }
 
                 filaSel = -1;
             } else {
@@ -430,22 +422,73 @@ public class Controller {
 
         //afegirConductor
         view.getAfegirConductorButton().addActionListener(e -> {
-            carregarTaulaVehicleActual();
-            TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
-            tcm.addColumn(tc);;
-            Vehicle veh = (Vehicle) view.getJTaulaVehicles().getValueAt(view.getNumVehicleConductorCombobox().getSelectedIndex(),
-                    tcm.getColumnCount() - 1);
-//                Vehicle veh = new Vehicle("Opel", "Corsa", 2004, 154);
-            tcm.removeColumn(tc);
+            if (view.getAfegirIdConductorText().getText().isBlank()
+                    || view.getAfegirCognomConductorText().getText().isBlank()
+                    || view.getAfegirEdatConductorText().getText().isBlank()
+                    || view.getAfegirNomConductorText().getText().isBlank()) {
+                JOptionPane.showMessageDialog(view, "Hi ha algun camp buit. No pot haver-hi cap camp buit!");
+            } else {
+//                //Exemple de validesa utilitzant expressions regulars
+//                if (view.getAfegirNumeroText().getText().matches("\\d{2}") || view.getAfegirNumeroText().getText().matches("\\d{1}")) {
+//                    String[] sponsors_vehicle = {view.getAfegirSponsor1Text().getText(), view.getAfegirSponsor2Text().getText(), view.getAfegirSponsor3Text().getText()};
+//                    try {
+//                        if (Integer.parseInt(view.getAfegirAnyText().getText()) < 1900
+//                                || Integer.parseInt(view.getAfegirAnyText().getText()) > 2030) {
+//                            JOptionPane.showMessageDialog(view, "El any ha de ser valid (entre 1900 i 2030)");
+//                        } else {
+//                            model.insertarVehicle(view.getAfegirMarcaText().getText(),
+//                                    view.getAfegirModelText().getText(),
+//                                    Integer.parseInt(view.getAfegirAnyText().getText()),
+//                                    Integer.parseInt(view.getAfegirNumeroText().getText()),
+//                                    sponsors_vehicle
+//                            );
+//                        }
+//                    } catch (NumberFormatException x) {
+//                        JOptionPane.showMessageDialog(view, "El any ha de ser un ANY (en numeros, no escrit)");
+//                    }
+//                    actualitzarComboboxCond();
+//                    carregarTaulaVehicleActual();
+//                    carregarTaulaVehicleActual();
+//                } else {
+//                    JOptionPane.showMessageDialog(view, "El numero del vehicle ha de ser inferior a 100! I no pot ser"
+//                            + " una paraula, lletres, etc..");
+//                }
 
-            model.insertarConductor(view.getAfegirNomConductorText().getText(),
-                    view.getAfegirCognomConductorText().getText(),
-                    Integer.parseInt(view.getAfegirEdatConductorText().getText()),
-                    Integer.parseInt(view.getAfegirIdConductorText().getText()),
-                    veh
-            );
-            carregarTaulaConductorActual();
-            carregarTaulaVehicleActual();
+                //ACAEVEEV
+                if (view.getAfegirIdConductorText().getText().matches("\\d{5}")) {
+                    carregarTaulaVehicleActual();
+                    try {
+                        if (Integer.parseInt(view.getAfegirEdatConductorText().getText()) < 18
+                                || Integer.parseInt(view.getAfegirEdatConductorText().getText()) > 80) {
+                            JOptionPane.showMessageDialog(view, "La edat del conductor ha d'estar entre 18 i 80 anys!");
+                        } else {
+                            TableColumnModel tcm = view.getJTaulaVehicles().getColumnModel();
+                            tcm.addColumn(tc);;
+                            Vehicle veh = (Vehicle) view.getJTaulaVehicles().getValueAt(view.getNumVehicleConductorCombobox().getSelectedIndex(),
+                                    tcm.getColumnCount() - 1);
+                            tcm.removeColumn(tc);
+
+                            model.insertarConductor(view.getAfegirNomConductorText().getText(),
+                                    view.getAfegirCognomConductorText().getText(),
+                                    Integer.parseInt(view.getAfegirEdatConductorText().getText()),
+                                    Integer.parseInt(view.getAfegirIdConductorText().getText()),
+                                    veh
+                            );
+                        }
+
+                    } catch (NumberFormatException a) {
+                        JOptionPane.showMessageDialog(view, "La edat ha de estar en format numeric!");
+                    }
+                    carregarTaulaConductorActual();
+                    carregarTaulaVehicleActual();
+                } else {
+                    JOptionPane.showMessageDialog(view, "La id del conductor ha de tenir 5 digits, encara que sigui"
+                            + " una id baixa! Exemple: 00012."
+                            + " Tampoc pot ser una lletra o un numero");
+                }
+
+            }
+
         }
         );
         //eliminarConductor

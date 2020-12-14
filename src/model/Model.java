@@ -54,24 +54,26 @@ public class Model {
     public static <T> void insertar(T a, Collection<T> col) {
         col.add(a);
     }
-    
-    
-    
+
     public void insertarVehicle(String marca, String model, int any, int numero, String[] sponsors) {
         Vehicle ve = new Vehicle(marca, model, any, numero, sponsors);
         Model.insertar(ve, data);
         Model.insertar(ve, dataOrd);
     }
 
+    //metode generic per a eliminar dades 
+    public static <T> void eliminar(T a, Collection<T> col) {
+        col.remove(a);
+    }
+
     public void eliminarVehicle(Vehicle algo) {
-        data.remove(algo);
-        dataOrd.remove(algo);
+        Model.eliminar(algo, data);
+        Model.eliminar(algo, dataOrd);
     }
 
 //    public void actualitzarVehicle(String marca, String model, int any, int numero) {
 //
 //    }
-
     class VehicleOrdenatMarca implements Comparator<Vehicle> {
 
         @Override
@@ -105,8 +107,8 @@ public class Model {
     }
 
     public void eliminarConductor(Conductor algo) {
-        dataConductor.remove(algo);
-        dataOrdConductor.remove(algo);
+        Model.eliminar(algo, dataConductor);
+        Model.eliminar(algo, dataOrdConductor);
     }
 
     class ConductorOrdenatNom implements Comparator<Conductor> {
