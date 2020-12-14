@@ -428,33 +428,7 @@ public class Controller {
                     || view.getAfegirNomConductorText().getText().isBlank()) {
                 JOptionPane.showMessageDialog(view, "Hi ha algun camp buit. No pot haver-hi cap camp buit!");
             } else {
-//                //Exemple de validesa utilitzant expressions regulars
-//                if (view.getAfegirNumeroText().getText().matches("\\d{2}") || view.getAfegirNumeroText().getText().matches("\\d{1}")) {
-//                    String[] sponsors_vehicle = {view.getAfegirSponsor1Text().getText(), view.getAfegirSponsor2Text().getText(), view.getAfegirSponsor3Text().getText()};
-//                    try {
-//                        if (Integer.parseInt(view.getAfegirAnyText().getText()) < 1900
-//                                || Integer.parseInt(view.getAfegirAnyText().getText()) > 2030) {
-//                            JOptionPane.showMessageDialog(view, "El any ha de ser valid (entre 1900 i 2030)");
-//                        } else {
-//                            model.insertarVehicle(view.getAfegirMarcaText().getText(),
-//                                    view.getAfegirModelText().getText(),
-//                                    Integer.parseInt(view.getAfegirAnyText().getText()),
-//                                    Integer.parseInt(view.getAfegirNumeroText().getText()),
-//                                    sponsors_vehicle
-//                            );
-//                        }
-//                    } catch (NumberFormatException x) {
-//                        JOptionPane.showMessageDialog(view, "El any ha de ser un ANY (en numeros, no escrit)");
-//                    }
-//                    actualitzarComboboxCond();
-//                    carregarTaulaVehicleActual();
-//                    carregarTaulaVehicleActual();
-//                } else {
-//                    JOptionPane.showMessageDialog(view, "El numero del vehicle ha de ser inferior a 100! I no pot ser"
-//                            + " una paraula, lletres, etc..");
-//                }
 
-                //ACAEVEEV
                 if (view.getAfegirIdConductorText().getText().matches("\\d{5}")) {
                     carregarTaulaVehicleActual();
                     try {
@@ -493,13 +467,10 @@ public class Controller {
         );
         //eliminarConductor
         view.getEliminarConductorButton().addActionListener(e -> {
-//                    System.out.println(filaSel);
             if (filaSelCond != -1) {
                 TableColumnModel tcm = view.getJTaulaConductor().getColumnModel();
                 tcm.addColumn(tcC);
-//                        System.out.println(filaSel);  
                 Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(filaSelCond, tcm.getColumnCount() - 1);
-//                        System.out.println(veh.toString());
                 tcm.removeColumn(tcC);
                 model.eliminarConductor(cond);
                 carregarTaulaConductorActual();
