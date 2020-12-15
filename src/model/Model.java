@@ -5,6 +5,10 @@
  */
 package model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -126,4 +130,23 @@ public class Model {
 
     }
 
+    public void save(String fileName) throws FileNotFoundException {
+        PrintWriter pw = new PrintWriter(new FileOutputStream(fileName));
+        for (Vehicle v : data) {
+//            pw.println(v.get1_numero_Vehicle() + "," + v.get2_model_Vehicle() + "," +
+//                    v.get3_any_Vehicle() + "," + v.get4_marca_Vehicle() + "," +
+//                    v.get5_sponsors_Vehicle() + "," + v.get6_cond());
+              pw.println(data);
+        }
+        pw.close();
+    }
+    
+    public void delete(String fileName) throws FileNotFoundException {
+        File arx = new File(fileName);
+        if (arx.delete()) {
+            System.out.println("L'arxiu " + arx.getName() + " s'ha borrat correctament, preparat per a tornar a crear noves dades!");
+        } else {
+            System.out.println("No s'ha pogut borrar l'arxiu!");
+        }
+    }
 }

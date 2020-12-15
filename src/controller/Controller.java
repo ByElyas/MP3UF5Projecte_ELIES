@@ -11,9 +11,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
 import static java.lang.System.console;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -36,6 +40,7 @@ public class Controller {
     private static View view;
 
 //    private int comboboxActualCond = 0;
+    private String nomArxiu = "fitxer_dades";
     private int colVehicleActual = 0;
     private int colConductorActual = 0;
     private int filaSel = -1;
@@ -57,11 +62,11 @@ public class Controller {
          * VEHICLE
          */
         //Vehicles per defecte
-        String[] sponsors_exemple = {"Pirelli", "Repsol", "SPARCO"};
-        System.out.println(Arrays.toString(sponsors_exemple));
-        model.insertarVehicle("Mazda", "RX-7 FC", 1989, 6, sponsors_exemple);
-        model.insertarVehicle("Unity", "RX-7 FC", 1986, 8, sponsors_exemple);
-        model.insertarVehicle("Nissan", "Skyline GTR R32", 1991, 22, sponsors_exemple);
+//        String[] sponsors_exemple = {"Pirelli", "Repsol", "SPARCO"};
+//        System.out.println(Arrays.toString(sponsors_exemple));
+//        model.insertarVehicle("Mazda", "RX-7 FC", 1989, 6, sponsors_exemple);
+//        model.insertarVehicle("Unity", "RX-7 FC", 1986, 8, sponsors_exemple);
+//        model.insertarVehicle("Nissan", "Skyline GTR R32", 1991, 22, sponsors_exemple);
 //        model.insertarVehicle("Toyota", "Corolla Trueno AE86", 1986, 86);
 //        model.insertarVehicle("Nissan", "Silvia S15", 1998, 66);
 //        model.insertarVehicle("Audi", "Quattro Sport", 1988, 24);
@@ -494,6 +499,26 @@ public class Controller {
             }
         }
         );
+
+        //GUARDAR LES DADES A UN FITXER QUAN ES TANCA EL PROGRAMA
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                //NO FA FALTA BORRAR, QUAN FEM UN SAVE SOBREESCRIU EL QUE HI HAGUI ANTERIORMENT AL FITXER
+                //Borrar l'arxiu de dades per tal de que no molesti al crearlo de nou
+//                try {
+//                    model.delete(nomArxiu);
+//                } catch (FileNotFoundException ex) {
+//                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+                try {
+                    model.save(nomArxiu);
+//                    model.delete(nomArxiu);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
 
 //        view.getNumVehicleConductorCombobox().addItemListener(e -> {
 //            comboboxActualCond =;
