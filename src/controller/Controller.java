@@ -224,6 +224,7 @@ public class Controller {
     }
 
     private void controlador() {
+        
 
 //        DefaultTableModel m = new DefaultTableModel();
 //        view.getJTaulaVehicles().setModel(m);
@@ -286,6 +287,7 @@ public class Controller {
                 tcm.removeColumn(tc);
                 filaSel = -1;
                 carregarTaulaVehicleActual();
+                carregarTaulaConductorActual();
             } else {
                 System.out.println(filaSel);
                 JOptionPane.showMessageDialog(view, "Has de seleccionar una fila per a editarla");
@@ -505,25 +507,12 @@ public class Controller {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-//                //NO FA FALTA BORRAR, QUAN FEM UN SAVE SOBREESCRIU EL QUE HI HAGUI ANTERIORMENT AL FITXER
-//                try {
-//                    model.save(nomArxiu);
-////                    model.delete(nomArxiu);
-//                } catch (FileNotFoundException ex) {
-//                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-
-
                 //MODEL DE PROVA 2
                 for (int i = 0; i < model.getData().size(); i++) {
-                    TableColumnModel tcmMC = view.getJTaulaVehicles().getColumnModel();
-                    tcmMC.addColumn(tc);
-                    Vehicle v = (Vehicle) view.getJTaulaVehicles().getValueAt(i, tcmMC.getColumnCount() - 1);
-                    tcmMC.removeColumn(tc);
                     try {
-                        model.save(nomArxiu, v);
+                        model.save(nomArxiu);
                     } catch (IOException ex) {
-                        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                          System.out.println("Aqui no se que passa jaja");
                     }
                 }
             }

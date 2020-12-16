@@ -144,20 +144,31 @@ public class Model {
 //        }
 //        pw.close();
 //    }
-    
-    public void save(String filename, Vehicle v) throws FileNotFoundException, IOException {
+//    public void save(String filename, Vehicle v) throws FileNotFoundException, IOException {
+//        ObjectOutputStream out = null;
+//        
+//        try {
+//            out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)));
+//            for (int i = 0; i <= data.size(); i++) {
+//                out.writeObject(v);
+//            }
+//        } finally {
+//            if(out !=null) out.close();
+//        }
+//    }
+    public void save(String filename) throws FileNotFoundException, IOException {
         ObjectOutputStream out = null;
-        
+
         try {
             out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)));
-            for (int i = 0; i <= data.size(); i++) {
-                out.writeObject(v);
-            }
+                out.writeObject(data);
         } finally {
-            if(out !=null) out.close();
+            if (out != null) {
+                out.close();
+            }
         }
     }
-    
+
     public void delete(String fileName) throws FileNotFoundException {
         File arx = new File(fileName);
         if (arx.delete()) {
