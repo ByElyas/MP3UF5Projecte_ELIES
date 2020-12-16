@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import static java.lang.System.console;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -504,18 +505,26 @@ public class Controller {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-                //NO FA FALTA BORRAR, QUAN FEM UN SAVE SOBREESCRIU EL QUE HI HAGUI ANTERIORMENT AL FITXER
-                //Borrar l'arxiu de dades per tal de que no molesti al crearlo de nou
+//                //NO FA FALTA BORRAR, QUAN FEM UN SAVE SOBREESCRIU EL QUE HI HAGUI ANTERIORMENT AL FITXER
 //                try {
-//                    model.delete(nomArxiu);
+//                    model.save(nomArxiu);
+////                    model.delete(nomArxiu);
 //                } catch (FileNotFoundException ex) {
 //                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
 //                }
-                try {
-                    model.save(nomArxiu);
-//                    model.delete(nomArxiu);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+
+
+                //MODEL DE PROVA 2
+                for (int i = 0; i < model.getData().size(); i++) {
+                    TableColumnModel tcmMC = view.getJTaulaVehicles().getColumnModel();
+                    tcmMC.addColumn(tc);
+                    Vehicle v = (Vehicle) view.getJTaulaVehicles().getValueAt(i, tcmMC.getColumnCount() - 1);
+                    tcmMC.removeColumn(tc);
+                    try {
+                        model.save(nomArxiu, v);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         });

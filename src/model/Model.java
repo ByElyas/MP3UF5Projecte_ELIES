@@ -5,9 +5,13 @@
  */
 package model;
 
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -130,15 +134,28 @@ public class Model {
 
     }
 
-    public void save(String fileName) throws FileNotFoundException {
-        PrintWriter pw = new PrintWriter(new FileOutputStream(fileName));
-        for (Vehicle v : data) {
+//    public void save(String fileName) throws FileNotFoundException {
+//        PrintWriter pw = new PrintWriter(new FileOutputStream(fileName));
+//        for (Vehicle v : data) {
 //            pw.println(v.get1_numero_Vehicle() + "," + v.get2_model_Vehicle() + "," +
 //                    v.get3_any_Vehicle() + "," + v.get4_marca_Vehicle() + "," +
-//                    v.get5_sponsors_Vehicle() + "," + v.get6_cond());
-              pw.println(data);
+//                     "[" + v.get5_sponsors_Vehicle() + "]" + "," + v.get6_cond());
+////              pw.println(data);
+//        }
+//        pw.close();
+//    }
+    
+    public void save(String filename, Vehicle v) throws FileNotFoundException, IOException {
+        ObjectOutputStream out = null;
+        
+        try {
+            out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)));
+            for (int i = 0; i <= data.size(); i++) {
+                out.writeObject(v);
+            }
+        } finally {
+            if(out !=null) out.close();
         }
-        pw.close();
     }
     
     public void delete(String fileName) throws FileNotFoundException {
