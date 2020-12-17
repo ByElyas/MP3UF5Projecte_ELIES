@@ -41,7 +41,8 @@ public class Controller {
     private static View view;
 
 //    private int comboboxActualCond = 0;
-    private String nomArxiu = "fitxer_dades";
+    private String nomArxiuV = "fitxer_dades_VEHICLE";
+    private String nomArxiuC = "fitxer_dades_CONDUCTOR";
     private int colVehicleActual = 0;
     private int colConductorActual = 0;
     private int filaSel = -1;
@@ -224,12 +225,25 @@ public class Controller {
     }
 
     private void controlador() {
-        
-
-//        DefaultTableModel m = new DefaultTableModel();
-//        view.getJTaulaVehicles().setModel(m);
         //Codi que inicilitza la vista
         view.setVisible(true);
+        
+        //CARREGAR TAULA EN DADES DEL FITXER
+        try {
+            model.loadVehicle(nomArxiuV);
+        } catch (IOException ex) {
+            System.out.println("a");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("a");
+        }
+        
+        try {
+            model.loadConductor(nomArxiuC);
+        } catch (IOException ex) {
+            System.out.println("a");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("a");
+        }
 //        carregarTaulaVehicleActual();
 //        carregarTaulaConductorActual();
         //Inicialitzem els textos per defecte que ens mostrarà l'alicatiu
@@ -503,16 +517,17 @@ public class Controller {
         }
         );
 
-        //GUARDAR LES DADES A UN FITXER QUAN ES TANCA EL PROGRAMA
+        //GUARDAR LES DADES A UN FITXER QUAN ES TANCA EL PROGRAMA 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
                 //MODEL DE PROVA 2
                 for (int i = 0; i < model.getData().size(); i++) {
                     try {
-                        model.save(nomArxiu);
+                        model.saveVehicle(nomArxiuV);
+                        model.saveConductor(nomArxiuC);
                     } catch (IOException ex) {
-                          System.out.println("Aqui no se que passa jaja");
+                          System.out.println("Catch de excepcio de quan es crea el fitxer per primera vegada");
                     }
                 }
             }

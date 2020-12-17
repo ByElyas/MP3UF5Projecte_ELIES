@@ -5,19 +5,17 @@
  */
 package model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.TreeSet;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author profe
  * Vehicle
  */
-public class Vehicle implements Comparable<Vehicle> {
+public class Vehicle implements Comparable<Vehicle>, Serializable {
     
     private String[] _5_sponsors_Vehicle;
     private String _4_marca_Vehicle;

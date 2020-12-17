@@ -8,9 +8,11 @@ package model;
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -134,7 +136,7 @@ public class Model {
 
     }
 
-//    public void save(String fileName) throws FileNotFoundException {
+//    public void saveVehicle(String fileName) throws FileNotFoundException {
 //        PrintWriter pw = new PrintWriter(new FileOutputStream(fileName));
 //        for (Vehicle v : data) {
 //            pw.println(v.get1_numero_Vehicle() + "," + v.get2_model_Vehicle() + "," +
@@ -144,7 +146,7 @@ public class Model {
 //        }
 //        pw.close();
 //    }
-//    public void save(String filename, Vehicle v) throws FileNotFoundException, IOException {
+//    public void saveVehicle(String filename, Vehicle v) throws FileNotFoundException, IOException {
 //        ObjectOutputStream out = null;
 //        
 //        try {
@@ -156,7 +158,9 @@ public class Model {
 //            if(out !=null) out.close();
 //        }
 //    }
-    public void save(String filename) throws FileNotFoundException, IOException {
+    
+    // GUARDAR LES DADES DELS VEHICLES A UN FITXER
+    public void saveVehicle(String filename) throws FileNotFoundException, IOException {
         ObjectOutputStream out = null;
 
         try {
@@ -168,7 +172,41 @@ public class Model {
             }
         }
     }
+    
+        // GUARDAR LES DADES DELS CONDUCTORS A UN FITXER
+    public void saveConductor(String filename) throws FileNotFoundException, IOException {
+        ObjectOutputStream out = null;
 
+        try {
+            out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filename)));
+                out.writeObject(dataConductor);
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+        }
+    }
+
+    //CARREGAR LES DADES DELS VEHICLES QUE ESTAN GUARDATS A UN FITXER
+    public void loadVehicle(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));        
+        try {
+            data.addAll((TreeSet<Vehicle>) in.readObject());
+        } finally {
+            if(in != null) in.close();
+        }
+    }
+    
+        //CARREGAR LES DADES DELS CONDUCTORS QUE ESTAN GUARDATS A UN FITXER
+    public void loadConductor(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));        
+        try {
+            dataConductor.addAll((TreeSet<Conductor>) in.readObject());
+        } finally {
+            if(in != null) in.close();
+        }
+    }
+    
     public void delete(String fileName) throws FileNotFoundException {
         File arx = new File(fileName);
         if (arx.delete()) {

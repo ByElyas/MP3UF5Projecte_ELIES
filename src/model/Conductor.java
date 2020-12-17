@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Comparator;
 
@@ -15,7 +16,7 @@ import java.util.Comparator;
 /**
  * Conductor
  */
-public class Conductor implements Comparable<Conductor> {
+public class Conductor implements Comparable<Conductor>, Serializable {
 
     private Vehicle _5_vehicle_Conductor;
     private String _4_nom_Conductor;
