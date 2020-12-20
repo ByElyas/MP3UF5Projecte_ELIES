@@ -15,9 +15,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Random;
 import java.util.TreeSet;
 import model.Vehicle;
 import model.Conductor;
@@ -207,7 +209,7 @@ public class Model {
         }
     }
     
-    public void delete(String fileName) throws FileNotFoundException {
+    public void deleteArxiu(String fileName) throws FileNotFoundException {
         File arx = new File(fileName);
         if (arx.delete()) {
             System.out.println("L'arxiu " + arx.getName() + " s'ha borrat correctament, preparat per a tornar a crear noves dades!");
@@ -215,4 +217,23 @@ public class Model {
             System.out.println("No s'ha pogut borrar l'arxiu!");
         }
     }
+    
+    //Carregar password a un fitxer amb posició oculta
+//    public void carregarPassword() throws FileNotFoundException, IOException {
+//        Random rn=new Random();
+//        long offset=rn.nextInt();
+//        int secret=rn.nextInt(701554);
+//        
+//        File f = new File("secret.dat");
+//        
+//        try (RandomAccessFile fitxer = new RandomAccessFile(f,"rw")) {
+//            fitxer.seek(0);
+//            fitxer.writeLong(offset);
+//            fitxer.seek(offset);
+//            fitxer.writeInt(secret);
+//            System.out.println("Password carregada correctament");
+//        }catch(Exception e) {
+//            System.out.println("Algo dolent ha passat!");
+//        }
+//    }
 }

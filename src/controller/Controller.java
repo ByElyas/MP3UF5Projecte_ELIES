@@ -12,11 +12,18 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import static java.lang.System.console;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -63,23 +70,7 @@ public class Controller {
         /**
          * VEHICLE
          */
-        //Vehicles per defecte
-//        String[] sponsors_exemple = {"Pirelli", "Repsol", "SPARCO"};
-//        System.out.println(Arrays.toString(sponsors_exemple));
-//        model.insertarVehicle("Mazda", "RX-7 FC", 1989, 6, sponsors_exemple);
-//        model.insertarVehicle("Unity", "RX-7 FC", 1986, 8, sponsors_exemple);
-//        model.insertarVehicle("Nissan", "Skyline GTR R32", 1991, 22, sponsors_exemple);
-//        model.insertarVehicle("Toyota", "Corolla Trueno AE86", 1986, 86);
-//        model.insertarVehicle("Nissan", "Silvia S15", 1998, 66);
-//        model.insertarVehicle("Audi", "Quattro Sport", 1988, 24);
-//        model.insertarVehicle("Seat", "Ibiza KitCar", 1995, 7);
 
-        //Conductors per defecte
-//        model.insertarConductor("Pepe", "Viyuela", 45, 6589);
-//        model.insertarConductor("Paul", "Walker", 47, 2254);
-//        model.insertarConductor("Ian", "Mardhaveer", 24, 222);
-//        model.insertarConductor("Alex", "Cañizares", 21, 1574);
-//        model.insertarConductor("Frank", "Williams", 21, 1574);
         ///////////////////////////
         //TITOL PANEL VEHICLE
         view.getVehicleLabel().setText("VEHICLES");
@@ -136,8 +127,8 @@ public class Controller {
 //        view.getAfegirMarcaText().setSize(0, 0);
         view.getAfegirNomConductorText().setText("Nom Placeholder");
         view.getAfegirCognomConductorText().setText("Cognom Placeholder");
-        view.getAfegirEdatConductorText().setText("999");
-        view.getAfegirIdConductorText().setText("99999");
+        view.getAfegirEdatConductorText().setText("18");
+        view.getAfegirIdConductorText().setText("00001");
 
         //FILTRE
         view.getFiltrarConductorCombobox().removeAllItems();
@@ -193,7 +184,7 @@ public class Controller {
     }
 
     public void carregarTaulaVehicleOrdenada() {
-//        model.getDataOrd().addAll(model.getData());
+        model.getDataOrd().addAll(model.getData());
         tc = Utils.<Vehicle>loadTable(model.getDataOrd(), view.getJTaulaVehicles(), Vehicle.class, true, true);
     }
 
@@ -224,11 +215,42 @@ public class Controller {
         }
     }
 
-    private void controlador() {
-        //Codi que inicilitza la vista
-        view.setVisible(true);
-        
-        //CARREGAR TAULA EN DADES DEL FITXER
+    public void preguntarPassword() throws FileNotFoundException {
+        //carregar la password
+        Random rn = new Random();
+        long offset = rn.nextInt(1000 - 100) + 100;
+        int secret = 701554;
+
+        File f = new File("secret.dat");
+        try ( RandomAccessFile fitxer = new RandomAccessFile(f, "rw")) {
+            fitxer.seek(0);
+            fitxer.writeLong(offset);
+            fitxer.seek(offset);
+            fitxer.writeInt(secret);
+            System.out.println("Password carregada correctament");
+        } catch (Exception e) {
+            System.out.println("Algo dolent ha passat al carregar la password al fitxer!");
+        }
+
+        //puesto de proves de llegir fitxer .dat 
+        try ( FileInputStream in = new FileInputStream(f.getName())) {
+            int algo = in.read();
+            System.out.println(algo);
+        } catch (IOException ex) {
+            System.out.println("Algo ha anat mal al llegir!");
+        }
+
+        //Formulari de password: trobarla al fitxer i mirar si està bè o mal
+//        Scanner scnr = new Scanner(f); 
+        String choice = JOptionPane.showInputDialog("Entra la password:", "Password");
+
+        if ((choice == null) || ((choice != null) && !(choice.equals("algo")))) {
+            JOptionPane.showMessageDialog(view, "La password no es la correcta! El programa es tancarà...");
+            System.exit(0);
+        }
+    }
+
+    public void carregarDades() {
         try {
             model.loadVehicle(nomArxiuV);
         } catch (IOException ex) {
@@ -236,7 +258,7 @@ public class Controller {
         } catch (ClassNotFoundException ex) {
             System.out.println("a");
         }
-        
+
         try {
             model.loadConductor(nomArxiuC);
         } catch (IOException ex) {
@@ -244,6 +266,22 @@ public class Controller {
         } catch (ClassNotFoundException ex) {
             System.out.println("a");
         }
+    }
+
+    private void controlador() {
+
+        try {
+            preguntarPassword();
+        } catch (FileNotFoundException ex) {
+            System.out.println("No s'ha trobat algun fitxer, jo que se xdd");
+        }
+
+        //Codi que inicilitza la vista
+        view.setVisible(true);
+
+        //CARREGAR DADES A LES COL·LECCIONS A PARTIR DELS FITXERS
+        carregarDades();
+
 //        carregarTaulaVehicleActual();
 //        carregarTaulaConductorActual();
         //Inicialitzem els textos per defecte que ens mostrarà l'alicatiu
@@ -527,7 +565,7 @@ public class Controller {
                         model.saveVehicle(nomArxiuV);
                         model.saveConductor(nomArxiuC);
                     } catch (IOException ex) {
-                          System.out.println("Catch de excepcio de quan es crea el fitxer per primera vegada");
+                        System.out.println("Catch de excepcio de quan es crea el fitxer per primera vegada");
                     }
                 }
             }
