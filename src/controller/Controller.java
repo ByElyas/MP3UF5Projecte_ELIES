@@ -22,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -47,7 +48,6 @@ public class Controller {
     private static Model model;
     private static View view;
 
-//    private int comboboxActualCond = 0;
     private String nomArxiuV = "fitxer_dades_VEHICLE";
     private String nomArxiuC = "fitxer_dades_CONDUCTOR";
     private int colVehicleActual = 0;
@@ -57,7 +57,6 @@ public class Controller {
     private TableColumn tc;
     private TableColumn tcC;
     private TableColumn tcAlgo;
-//    private TableColumn tcE;
 
     public Controller(Model m, View v) {
         view = v;
@@ -76,7 +75,6 @@ public class Controller {
         view.getVehicleLabel().setText("VEHICLES");
 
         //CAIXES DE TEXT - FORMULARI
-//        view.getAfegirMarcaText().setSize(0, 0);
         view.getAfegirMarcaText().setText("Marca Placeholder");
         view.getAfegirModelText().setText("Model Placeholder");
         view.getAfegirAnyText().setText("1900");
@@ -115,7 +113,6 @@ public class Controller {
         view.getEditarModelText().setText("Placeholder");
         view.getEditarNumeroLabel().setText("Numero Vehicle");
         view.getEditarNumeroText().setText("999");
-//        tcmE.removeColumn(tc);
 
         /**
          * Conductor
@@ -124,7 +121,6 @@ public class Controller {
         view.getConductorLabel().setText("CONDUCTORS");
 
         //CAIXES DE TEXT - FORMULARI
-//        view.getAfegirMarcaText().setSize(0, 0);
         view.getAfegirNomConductorText().setText("Nom Placeholder");
         view.getAfegirCognomConductorText().setText("Cognom Placeholder");
         view.getAfegirEdatConductorText().setText("18");
@@ -156,7 +152,6 @@ public class Controller {
         view.getEditarEdatConductorLabel().setText("Edat Conductor");
         view.getEditarIdConductorLabel().setText("ID Conductor");
         view.getEditarIdConductorText().setText("99999");
-//        tcmE.removeColumn(tc);
         view.getNumVehicleConductorLabel().setText("Numero del vehicle");
 
         actualitzarComboboxCond();
@@ -165,20 +160,10 @@ public class Controller {
     public void actualitzarComboboxCond() {
         //Combobox per a elegir vehicle per als conductors nous               
         view.getNumVehicleConductorCombobox().removeAllItems();
-//        Combobox per a elegir vehicle per al conductor
-//        System.out.println(view.getJTaulaConductor().getColumnCount());
-        //Utils.<Vehicle>loadCombo(model.getData(), view.getNumVehicleConductorCombobox());   
         Utils.<Vehicle>loadCombo(model.getData(), view.getNumVehicleConductorCombobox());
     }
-//    public void defecteTextDinamic() {
-//     
-//    }
 
     public void carregarTaulaVehicle() {
-//        System.out.println(model.getData());
-//        System.out.println();
-//        System.out.println(filaSel);
-////        model.getData().addAll(model.getDataOrd());
         tc = Utils.<Vehicle>loadTable(model.getData(), view.getJTaulaVehicles(), Vehicle.class, true, true);
 
     }
@@ -197,12 +182,11 @@ public class Controller {
     }
 
     public void carregarTaulaConductor() {
-//        model.getDataConductor().addAll(model.getDataOrdConductor());
         tcC = Utils.<Conductor>loadTable(model.getDataConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
     }
 
     public void carregarTaulaConductorOrdenada() {
-//        model.getDataOrdConductor().addAll(model.getDataConductor());
+        model.getDataOrdConductor().addAll(model.getDataConductor());
         tcC = Utils.<Conductor>loadTable(model.getDataOrdConductor(), view.getJTaulaConductor(), Conductor.class, true, true);
     }
 
@@ -216,37 +200,31 @@ public class Controller {
     }
 
     public void preguntarPassword() throws FileNotFoundException {
-        //carregar la password
+        //carregar la password al fitxer
         Random rn = new Random();
         long offset = rn.nextInt(1000 - 100) + 100;
-        int secret = 701554;
+        String secret = "701554";
 
+        System.out.println(offset);
         File f = new File("secret.dat");
         try ( RandomAccessFile fitxer = new RandomAccessFile(f, "rw")) {
             fitxer.seek(0);
             fitxer.writeLong(offset);
             fitxer.seek(offset);
-            fitxer.writeInt(secret);
+            fitxer.writeUTF(secret);
             System.out.println("Password carregada correctament");
+            fitxer.seek(offset);
+            String secretFitxer = fitxer.readUTF();
+            
+            //Formulari de password: trobarla al fitxer i mirar si està bè o mal
+            String choice = JOptionPane.showInputDialog("Entra la password:", "Password");
+
+            if ((choice == null) || ((choice != null) && !(choice.equals(secretFitxer)))) {
+                JOptionPane.showMessageDialog(view, "La password no es la correcta! El programa es tancarà...");
+                System.exit(0);                
+            }
         } catch (Exception e) {
             System.out.println("Algo dolent ha passat al carregar la password al fitxer!");
-        }
-
-        //puesto de proves de llegir fitxer .dat 
-        try ( FileInputStream in = new FileInputStream(f.getName())) {
-            int algo = in.read();
-            System.out.println(algo);
-        } catch (IOException ex) {
-            System.out.println("Algo ha anat mal al llegir!");
-        }
-
-        //Formulari de password: trobarla al fitxer i mirar si està bè o mal
-//        Scanner scnr = new Scanner(f); 
-        String choice = JOptionPane.showInputDialog("Entra la password:", "Password");
-
-        if ((choice == null) || ((choice != null) && !(choice.equals("algo")))) {
-            JOptionPane.showMessageDialog(view, "La password no es la correcta! El programa es tancarà...");
-            System.exit(0);
         }
     }
 
@@ -282,8 +260,6 @@ public class Controller {
         //CARREGAR DADES A LES COL·LECCIONS A PARTIR DELS FITXERS
         carregarDades();
 
-//        carregarTaulaVehicleActual();
-//        carregarTaulaConductorActual();
         //Inicialitzem els textos per defecte que ens mostrarà l'alicatiu
         defecteText();
 
@@ -301,14 +277,8 @@ public class Controller {
             public void mouseClicked(MouseEvent e) {
                 filaSel = view.getJTaulaVehicles().getSelectedRow();
                 TableColumnModel tcmMC = view.getJTaulaVehicles().getColumnModel();
-//                System.out.println(tcmMC.getColumnCount());
                 tcmMC.addColumn(tc);
-//                DefaultTableModel m = (DefaultTableModel() view.getJTaulaVehicles().getModel();
-//                System.out.println(filaSel);
-//                System.out.println(tcmMC.getColumnCount());
-//                System.out.println(Vehicle.class.getClass().getName());
                 Vehicle vehE = (Vehicle) view.getJTaulaVehicles().getValueAt(filaSel, tcmMC.getColumnCount() - 1);
-//                System.out.println(String.valueOf(vehE));
                 tcmMC.removeColumn(tc);
                 view.getEditarNumeroText().setText(String.valueOf(vehE.get1_numero_Vehicle()));
                 view.getEditarAnyText().setText(String.valueOf(vehE.get3_any_Vehicle()));
@@ -322,7 +292,6 @@ public class Controller {
                     carregarTaulaVehicleActual();
                     tcC = Utils.<Conductor>loadTable(obj.get6_cond(), view.getJTaulaConductor(), Conductor.class, true, true);
                 }
-//                carregarTaulaConductorActual();
             }
         }
         //EDITAR VEHICLE
@@ -441,10 +410,8 @@ public class Controller {
             public void mouseClicked(MouseEvent e) {
                 filaSelCond = view.getJTaulaConductor().getSelectedRow();
                 TableColumnModel tcmCondE = view.getJTaulaConductor().getColumnModel();
-                tcmCondE.addColumn(tcC);
-//                        System.out.println(filaSel);  
+                tcmCondE.addColumn(tcC); 
                 Conductor condE = (Conductor) view.getJTaulaConductor().getValueAt(filaSelCond, tcmCondE.getColumnCount() - 1);
-//                System.out.println(String.valueOf(vehE));
                 tcmCondE.removeColumn(tcC);
                 view.getEditarIdConductorText().setText(String.valueOf(condE.get1_id_Conductor()));
                 view.getEditarEdatConductorText().setText(String.valueOf(condE.get3_edat_Conductor()));
@@ -455,14 +422,11 @@ public class Controller {
         }
         );
         view.getEditarConductorButton().addActionListener(e -> {
-//                    System.out.println(filaSel);
             carregarTaulaVehicleActual();
             if (filaSelCond != -1) {
                 TableColumnModel tcm = view.getJTaulaConductor().getColumnModel();
                 tcm.addColumn(tc);
-//                        System.out.println(filaSel);  
                 Conductor cond = (Conductor) view.getJTaulaConductor().getValueAt(filaSelCond, tcm.getColumnCount() - 1);
-//                        System.out.println(veh.toString());
                 cond.set1_id_Conductor(Integer.parseInt(view.getEditarIdConductorText().getText()));
                 cond.set2_cognom_Conductor(view.getEditarCognomConductorText().getText());
                 cond.set3_edat_Conductor(Integer.parseInt(view.getEditarEdatConductorText().getText()));
@@ -571,9 +535,6 @@ public class Controller {
             }
         });
 
-//        view.getNumVehicleConductorCombobox().addItemListener(e -> {
-//            comboboxActualCond =;
-//        });
     }
 
     //Per implementar els ActionEvents dels components de la vista (útil per 
